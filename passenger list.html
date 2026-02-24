@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>India Train Trip Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-main: #fff7ed;
+      --accent1: #ff6a3d;
+      --accent2: #37a2ff;
+      --accent3: #8fe05a;
+      --table-bg: #ffffff;
+      --text-dark: #212135;
+      --header-gradient: linear-gradient(90deg, #ff6a3d, #ffa534);
+      --border-color: #ffad59;
+      --yellow-bg: #ffc107;
+      --yellow-footer-bg: #ffd54f;
+      --yellow-footer-border: #ffb300;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header, .table-container, .passenger-list {
+      width: calc(100% - 100px);
+      max-width: 1100px;
+      margin-left: 50px;
+      margin-right: 50px;
+      box-sizing: border-box;
+    }
+    header {
+      margin-top: 1.5em;
+      text-align: center;
+      padding: 1em;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      background: var(--header-gradient);
+      color: white;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(255, 106, 61, 0.35);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+    header p {
+      margin-top: 0.3em;
+      font-size: 1.1em;
+      font-weight: 400;
+      color: #fff3bf;
+      letter-spacing: 0.8px;
+    }
+    .table-container {
+      margin-bottom: 2em;
+      margin-top: 2em;
+    }
+
+    /* Train Table */
+    .train-table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 3px solid var(--border-color);
+      background-color: var(--table-bg);
+    }
+    .train-table thead tr {
+      background-color: var(--yellow-bg);
+    }
+    .train-table th, .train-table td {
+      padding: 1em 1.2em;
+      text-align: left;
+      border-bottom: 2px solid #ffce84;
+      border-right: 2px solid #ffce84;
+    }
+    .train-table th {
+      color: #fff;
+      font-size: 1.1em;
+      border-right: 2px solid #ffa534;
+    }
+    .train-table th:last-child, .train-table td:last-child {
+      border-right: none;
+    }
+    .train-table tr:nth-child(even) {
+      background-color: #ffe0b2;
+    }
+    .train-table tr:hover {
+      background-color: var(--yellow-footer-bg);
+    }
+    .train-table tfoot tr {
+      background-color: var(--yellow-footer-bg);
+      border-top: 3px solid var(--yellow-footer-border);
+    }
+    .train-table tfoot td {
+      font-weight: bold;
+      border-bottom: none;
+      border-right: 2px solid #ffce84;
+    }
+    .train-table tfoot tr td:last-child {
+      border-right: none;
+    }
+
+    /* Compact tbody rows only for train table */
+    .train-table tbody td {
+      padding: 0.4em 0.8em;
+      line-height: 1.2;
+      font-size: 0.95em;
+    }
+
+    /* Column width adjustments */
+    .train-table td:nth-child(2),
+    .train-table th:nth-child(2) {
+      width: 120px;
+    }
+    .train-table td:nth-child(8),
+    .train-table th:nth-child(8) {
+      width: 90px;
+      text-align: left;
+    }
+
+    /* Passenger Table */
+    .passenger-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+      margin-bottom: 5em;
+    }
+    .passenger-table th, .passenger-table td {
+      padding: 0.7em 1.2em; /* original spacing preserved */
+      border-bottom: 2px solid #ffce84;
+      text-align: left;
+      font-size: 1em;
+    }
+    .passenger-table th {
+      background: #fff3bf;
+      font-size: 1.15em;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #ffad59;
+    }
+    .passenger-table tr:nth-child(even) td {
+      background: #fff9e6;
+    }
+
+    @media (max-width: 680px) {
+      header, .table-container, .passenger-list {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: calc(100% - 20px);
+      }
+      header h1 {
+        font-size: 1.7em;
+      }
+      header p {
+        font-size: 1em;
+      }
+      .passenger-list {
+        font-size: 1em;
+      }
+    }
+   .passenger-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  margin-bottom: 5em;
+  border: 3px solid var(--border-color); /* same border as train table */
+  border-radius: 10px;                   /* same rounded corners */
+  overflow: hidden;                      /* ensures rows respect the radius */
+  background-color: var(--table-bg);     /* same background */
+}
+.passenger-table th, .passenger-table td {
+  padding: 0.7em 1.2em;
+  border-bottom: 2px solid #ffffff; /* white inner lines */
+  border-right: 2px solid #ffffff;  /* vertical white line between columns */
+  text-align: left;
+  font-size: 1em;
+}
+.passenger-table th {
+  background: #fff3bf;
+  font-size: 1.15em;
+  letter-spacing: 0.5px;
+}
+.passenger-table tr:nth-child(even) td {
+  background: #fff9e6;
+}
+.passenger-table th:last-child,
+.passenger-table td:last-child {
+  border-right: none; /* no border on last column */
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>India Train Trip Plan</h1>
+    <p>Tejas is planning a trip for North India</p>
+  </header>
+
+  <div class="table-container">
+    <table class="train-table">
+      <thead>
+        <tr>
+          <th>Train Name And No</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Day</th>
+          <th>From &amp; To</th>
+          <th>Distance (km)</th>
+          <th>Fares (₹)</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Intercity Express<br>(17642)</td>
+          <td>04:00 PM <br> 08:00 PM</td>
+          <td>5 Hours</td>
+          <td>12 Feb 2025 <br>SATURDAY</td>
+          <td>Nanded &rarr; Secunderabad</td>
+          <td>277</td>
+          <td>80</td>
+          <td>Sleeper</td>
+        </tr>
+        <tr>
+          <td>Gorakhpur Express<br>(15024)</td>
+          <td>10:30 AM <br> 04:27 PM</td>
+          <td>29 Hours</td>
+          <td>13 Feb 2025 <br>SUNDAY</td>
+          <td>Kacheguda &rarr; Ayodhya</td>
+          <td>1691</td>
+          <td>670</td>
+          <td>Sleeper</td>
+        </tr>
+        <tr>
+          <td>Shrdha Setu SF Express<br>(22614)</td>
+          <td>11:28 PM <br> 05:00 AM</td>
+          <td>5 Hours</td>
+          <td>14 Feb 2025 <br>MONDAY</td>
+          <td>Ayodhya &rarr; Prayagraj</td>
+          <td>245</td>
+          <td>210</td>
+          <td>Sleeper</td>
+        </tr>
+        <tr>
+          <td>Pawan Express<br>(11061)</td>
+          <td>10:00 AM <br> 12:25 PM</td>
+          <td>2 Hours</td>
+          <td>16 Feb 2025 <br>WEDNESDAY</td>
+          <td>Prayagraj &rarr; Varanasi</td>
+          <td>124</td>
+          <td>145</td>
+          <td>Sleeper</td>
+        </tr>
+        <tr>
+          <td>Mahanagari SF Express<br>(22178)</td>
+          <td>10:00 AM <br> 06:05 AM</td>
+          <td>20 Hours</td>
+          <td>17 Feb 2025 <br>THURSDAY</td>
+          <td>Varanasi &rarr; Manmad</td>
+          <td>1250</td>
+          <td>580</td>
+          <td>Sleeper</td>
+        </tr>
+        <tr>
+          <td>Sachkhand Express<br>(12716)</td>
+          <td>07:35 AM <br> 02:35 PM</td>
+          <td>7 Hours</td>
+          <td>18 Feb 2025 <br>FRIDAY</td>
+          <td>Manmad &rarr; Nanded</td>
+          <td>350</td>
+          <td>225</td>
+          <td>Sleeper</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>2897 km</td>
+          <td>1910 ₹</td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="passenger-list">
+  <table class="passenger-table">
+    <thead>
+      <tr>
+        <th style="color: #ff6a3d;">Passengers</th>
+        <th style="color: #ff6a3d;">Mobile No</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Tejas Hangarge</td><td>7775073018</td></tr>
+      <tr><td>Balaji Pentewad</td><td>9284887835</td></tr>
+      <tr><td>Omkar Rautulwad</td><td>7666787677</td></tr>
+      <tr><td>Dashrath Urekar</td><td>9373560448</td></tr>
+      <tr><td>Madhav Kudkekar</td><td>8237872803</td></tr>
+      <tr><td>Arjun Hundekar</td><td>7822056082</td></tr>
+      <tr><td>Pavan Ghantaji</td><td>9021209447</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+    &copy; 2025 India Trip Planner. All rights reserved.
+  </div>
+</body>
+</html>

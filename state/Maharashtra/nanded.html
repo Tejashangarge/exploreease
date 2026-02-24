@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nanded – Sacred City on the Godavari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#050816;
+      color:#f5f5f5;
+      line-height:1.6;
+    }
+
+    /* HERO WITH YOUR BACKGROUND IMAGE */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)),
+        url("/image/Maharashtra/nanded.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#ffbf69,#ff6b6b);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#f7e9d8;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#ffd27f;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#ff9f1c,#ff6b6b);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#ffe8c2;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(9,11,25,0.96);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#ffd27f;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#ffbf69,#ff6b6b);
+    }
+    p{
+      font-size:15px;
+      color:#f1e6ff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#d0c2f5;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(11,15,40,0.97);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#ffea99;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#e8dcff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#ffbf69;
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#f7e0c8;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(16,24,56,0.95);
+      color:#f5e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#b8a6d8;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="search">
+  <img src="/image/logo.png" class="search-logo">
+
+
+  <div class="search-container">
+    <select id="districtsSelect">
+      <option value=""> All</option>
+    </select>
+    <input type="text" class="text" placeholder="search">
+   <button onclick="searchstate()">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+
+  </div>
+  </div>
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Historic River City • Maharashtra</div>
+      <h1>Nanded – <span>On the Banks of the Godavari</span></h1>
+      <p class="hero-subtitle">
+        Nanded is a major city in Maharashtra's Marathwada region, known for the sacred Takht Sachkhand Sri Hazur
+        Sahib Gurudwara, ancient forts and temples, and its setting on the Godavari River.
+      </p>
+      <p class="hero-tagline">Faith • History • Godavari • Forts</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Explore Nanded</button>
+        <button class="btn btn-outline">View Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CITY OVERVIEW -->
+    <section id="overview">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Nanded is one of Maharashtra's larger cities and the main centre of its district, located in the
+            southeastern part of the state along the Godavari River in the Marathwada region.
+          </p>
+          <p>
+            Historically the area has connections to ancient dynasties such as the Nandas and Mauryas, later Deccan
+            sultanates and Maratha rule, which led to the construction of forts, temples and river ghats around the city.
+          </p>
+          <p class="muted">
+            The city holds exceptional importance in Sikh history because Guru Gobind Singh Ji spent his final days
+            here and declared the Guru Granth Sahib as the eternal Guru at Hazur Sahib.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Quick facts</h3>
+          <ul>
+            <li>Region: Marathwada, southeastern Maharashtra.</li>
+            <li>River: Located on the banks of the Godavari.</li>
+            <li>Key identity: Major Sikh pilgrimage centre and district headquarters.</li>
+            <li>Languages: Marathi, Urdu, Hindi and others used locally.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Nanded has a tropical climate with very hot summers, heavy monsoon rains and relatively cool winters.
+          </p>
+          <p>
+            The most comfortable time to visit for sightseeing and pilgrim trips is usually from October or November
+            to February, when days are pleasant and evenings can feel cool.
+          </p>
+          <p class="muted">
+            Summers can see temperatures rising well above 40 degrees Celsius, while monsoon months bring strong
+            showers that can affect travel plans in the district.
+          </p>
+        </div>
+        <div class="info-row">
+          <div class="pill">Best season: Nov – Feb.</div>
+          <div class="pill">Summer highs: Around 40–42°C.</div>
+          <div class="pill">Monsoon: Heavy rain July – Sept.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTRACTIONS WITH EASY IMAGE BOXES -->
+    <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Visitors come to Nanded mainly to pay respects at Hazur Sahib, explore historic forts and temples, and spend
+        time at river ghats and nearby waterfalls and hill shrines.
+      </p>
+      <p class="muted">
+        Important sites include Sikh gurudwaras, Mahur's Renuka Devi temple, Nanded Fort, Kandhar Fort, Sahastrakund
+        waterfall and other heritage and nature spots across the district.
+      </p>
+
+      <div class="image-grid">
+        <!-- BOX 1 -->
+        <div class="image-box">
+          <img src="your-image-1.jpg" alt="Hazur Sahib Gurudwara Nanded">
+          <div class="image-overlay">
+            <div class="image-title">Takht Sachkhand Sri Hazur Sahib</div>
+            <div class="image-sub">
+              One of the five Takhts of Sikhism, a grand riverside gurudwara marking the final days of Guru Gobind Singh Ji.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="image-box">
+          <img src="your-image-2.jpg" alt="Nanded Fort">
+          <div class="image-overlay">
+            <div class="image-title">Nanded Fort & Godavari Ghats</div>
+            <div class="image-sub">
+              Historic fort area and riverfront ghats that recall the city's strategic and cultural past.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="image-box">
+          <img src="your-image-3.jpg" alt="Mahur Renuka Devi Temple">
+          <div class="image-overlay">
+            <div class="image-title">Mahur & Renuka Devi Temple</div>
+            <div class="image-sub">
+              Hilltop Shaktipeeth site near Mahur, associated with Renuka Devi and important Hindu legends.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="image-box">
+          <img src="your-image-4.jpg" alt="Sahastrakund waterfall near Nanded">
+          <div class="image-overlay">
+            <div class="image-title">Sahastrakund Waterfall & Nature Spots</div>
+            <div class="image-sub">
+              Scenic waterfall on the Penganga river and other natural getaways popular in monsoon and winter.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & LIFESTYLE -->
+    <section id="culture">
+      <h2>Culture, food & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Nanded blends influences from Marathi, Sikh and Deccan cultures, visible in its festivals, places of
+            worship and everyday street life around bazaars and riverfront areas.
+          </p>
+          <p>
+            The city's food scene includes traditional Maharashtrian dishes along with flavours shaped by nearby
+            Telangana, plus busy evening street-food zones and local markets.
+          </p>
+          <p class="muted">
+            Handicrafts and textiles, along with agricultural products from the district, are popular purchases for
+            visitors exploring local markets.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Why Nanded stands out</h3>
+          <ul>
+            <li>One of the holiest cities for Sikhs due to Hazur Sahib and related history.</li>
+            <li>Gateway to Mahur hills, historic forts and waterfalls across the district.</li>
+            <li>Strong mix of pilgrimage, heritage and typical Marathwada city life on the Godavari.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Many visitors plan 2–3 days in and around Nanded, combining darshan at Hazur Sahib with trips to Mahur, local
+        forts and nearby nature spots, using autos, shared transport or hired cabs.
+      </p>
+      <ul>
+        <li>Prefer winter months for long outdoor darshan and sightseeing; carry light woollens for evenings.</li>
+        <li>In summer, schedule temple and fort visits in the early morning or later evening to avoid peak heat.</li>
+        <li>During monsoon, check river and waterfall conditions, as heavy rain can affect access to certain spots.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Nanded – Sacred City on the Godavari • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chennai – Cultural Capital of the South</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#0a0f1e;
+      color:#f0f4ff;
+      line-height:1.6;
+    }
+
+    /* HERO WITH YOUR BACKGROUND IMAGE */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0)),
+        url("/tejas/image/chennai.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#00d4ff,#ff4d6d);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#e8f2ff;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#a3d8ff;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#00b8e6,#ff4d6d);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#d0e8ff;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(12,17,38,0.96);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#a3d8ff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#00d4ff,#ff4d6d);
+    }
+    p{
+      font-size:15px;
+      color:#e6ecff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#c8d8ff;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(15,22,50,0.97);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#b8e6ff;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#d4e2ff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#00d4ff;
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#f0e8ff;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(20,28,60,0.95);
+      color:#f0e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#a8b8d8;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Coastal Metropolis • Tamil Nadu</div>
+      <h1>Chennai – <span>Gateway of the South</span></h1>
+      <p class="hero-subtitle">
+        Chennai, formerly Madras, is Tamil Nadu's capital and a major cultural, economic and educational hub on the Coromandel Coast, known for its beaches, temples, classical arts and colonial heritage.
+      </p>
+      <p class="hero-tagline">Beaches • Temples • Culture • Marina</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Explore Chennai</button>
+        <button class="btn btn-outline">View Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CITY OVERVIEW -->
+      <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Visitors enjoy Chennai's iconic Marina Beach, ancient Kapaleeshwarar Temple, colonial Fort St. George, and cultural venues showcasing Carnatic music, Bharatanatyam dance and Tamil cinema heritage.
+      </p>
+      <p class="muted">
+        The city offers government museum, snake park, island beaches like Elliot's and Covelong, plus nearby temple towns like Mahabalipuram and Kanchipuram.
+      </p>
+
+      <div class="image-grid">
+        <!-- BOX 1 -->
+        <div class="image-box">
+          <img src="/tejas/image/Tamil Nadu/marina beach chennai.jpg" alt="Marina Beach Chennai">
+          <div class="image-overlay">
+            <div class="image-title">Marina Beach</div>
+            <div class="image-sub">
+              World's second longest beach, iconic promenade with statues, food stalls and evening crowds.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="image-box">
+          <img src="/tejas/image/Tamil Nadu/Kapaleeshwarar Temple.jpg" alt="Kapaleeshwarar Temple Chennai">
+          <div class="image-overlay">
+            <div class="image-title">Kapaleeshwarar Temple</div>
+            <div class="image-sub">
+              Stunning Dravidian architecture Shiva temple in Mylapore with towering gopuram and sacred tank.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="image-box">
+          <img src="/tejas/image/Tamil Nadu/Fort St. George & Museum.jpeg" alt="Fort St George Chennai">
+          <div class="image-overlay">
+            <div class="image-title">Fort St. George & Museum</div>
+            <div class="image-sub">
+              17th-century British fort housing the first British settlement and state museum with rare artifacts.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="image-box">
+          <img src="/tejas/image/Tamil Nadu/Government Museum & Arts.jpg" alt="Government Museum Chennai">
+          <div class="image-overlay">
+            <div class="image-title">Government Museum & Arts</div>
+            <div class="image-sub">
+              Asia's oldest museum complex with bronze gallery, art collections and cultural performances.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="overview">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Chennai is one of India's largest cities and the fourth most populous metropolis, serving as the capital of Tamil Nadu and a key port city on the Bay of Bengal.
+         </p>
+         <p>
+           Founded in the 17th century by the British East India Company, the city grew from a cluster of fishing villages into a major colonial center, later becoming a hub of Tamil culture, cinema and industry.
+         </p>
+         <p class="muted">
+           Known as the "Detroit of India" for its automobile industry and "India's health capital" due to world-class medical tourism facilities.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Quick facts</h3>
+         <ul>
+           <li>Region: Coromandel Coast, eastern Tamil Nadu.</li>
+           <li>Key identity: Cultural capital, IT hub and major port city.</li>
+           <li>Population: Over 12 million in metro area.</li>
+           <li>Languages: Tamil, English, Telugu and others.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Chennai has a tropical climate with hot and humid weather throughout the year, moderated by sea breezes, with a distinct northeast monsoon season.
+         </p>
+         <p>
+           The best time for comfortable sightseeing is from November to February when temperatures are pleasant and humidity is lower.
+         </p>
+         <p class="muted">
+           Summer months (April-June) are very hot with temperatures often exceeding 38°C, while October-December monsoon brings heavy rains to the city.
+         </p>
+        </div>
+        <div class="info-row">
+         <div class="pill">Best season: Nov – Feb.</div>
+         <div class="pill">Summer highs: 38–42°C.</div>
+         <div class="pill">Monsoon: Oct – Dec.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & LIFESTYLE -->
+    <section id="culture">
+      <h2>Culture, food & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Chennai is the heart of Tamil culture, birthplace of Carnatic music, Bharatanatyam dance and Tamil cinema industry, with vibrant festivals like Pongal, Marina music season and temple celebrations.
+         </p>
+         <p>
+           Famous for South Indian cuisine including idli, dosa, filter coffee and Chettinad specialties, with bustling food streets like Triplicane and T. Nagar.
+         </p>
+         <p class="muted">
+           Traditional silk sarees, Kanchipuram weaves, Tanjore paintings and bronze sculptures represent the city's rich artisanal heritage.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Why Chennai stands out</h3>
+         <ul>
+           <li>India's cultural capital with living classical arts traditions.</li>
+           <li>Gateway city connecting to Tamil Nadu's temple circuit and beaches.</li>
+           <li>Unique blend of colonial history, Dravidian architecture and modern IT hub.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Plan 3–4 days exploring central Chennai's temples and museums, Marina Beach evenings, plus day trips to Mahabalipuram or Pondicherry using metro, buses or cabs.
+      </p>
+      <ul>
+        <li>Winter months ideal for temple visits, beach walks and cultural events; carry light cotton clothes.</li>
+        <li>Visit temples early morning to avoid crowds and heat; modest clothing required.</li>
+        <li>Monsoon brings heavy rain affecting beach visits; check tide conditions for coastal areas.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Chennai – Cultural Capital of the South • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

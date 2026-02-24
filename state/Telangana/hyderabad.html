@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hyderabad – City of Pearls & Tech Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#020617;
+      color:#f5f5f5;
+      line-height:1.6;
+    }
+
+    /* ---------- HERO WITH YOUR BACKGROUND IMAGE ---------- */
+     header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)),
+        url("/tejas/image/telangana/telanganabg1.jpg"); /* change this path */
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(45,212,191,0.8);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+      color:#a5f3fc;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#22c1c3,#fdbb2d);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#e0f2fe;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#38bdf8;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#22c55e,#06b6d4);
+      color:#0b1020;
+      box-shadow:0 10px 25px rgba(15,23,42,0.9);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(15,23,42,1);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(148,163,184,0.8);
+      color:#e0f2fe;
+    }
+    .btn-outline:hover{
+      background:rgba(15,23,42,0.7);
+    }
+
+    /* ---------- MAIN LAYOUT ---------- */
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      border-radius:18px;
+      padding:22px 20px 24px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.75);
+      border:1px solid rgba(148,163,184,0.5);
+      backdrop-filter:blur(18px);
+    }
+
+    /* COMPLETELY NEW COLOR PALETTE PER SECTION */
+    #overview{
+      background-image:linear-gradient(135deg,#020617,#0f172a,#4c1d95);
+    }
+    #climate{
+      background-image:linear-gradient(135deg,#022c22,#065f46,#14b8a6);
+    }
+    #attractions{
+      background-image:linear-gradient(135deg,#111827,#1d4ed8,#7c3aed);
+    }
+    #culture{
+      background-image:linear-gradient(135deg,#0f172a,#4c1d95,#ec4899);
+    }
+    #tips{
+      background-image:linear-gradient(135deg,#022c57,#0369a1,#22c1c3);
+    }
+
+    /* ---------- HEADINGS & TEXT ---------- */
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#e0f2fe;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      text-shadow:0 2px 6px rgba(0,0,0,0.6);
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#22c55e,#06b6d4);
+    }
+    p{
+      font-size:15px;
+      color:#f9fafb;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#e5e7eb;
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    /* ---------- GRID & CARDS ---------- */
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      border-radius:16px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(148,163,184,0.7);
+      background-image:linear-gradient(145deg,rgba(15,23,42,0.9),rgba(15,23,42,0.5));
+      box-shadow:0 12px 28px rgba(0,0,0,0.7);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#a5f3fc;
+      text-shadow:0 1px 4px rgba(0,0,0,0.5);
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#f9fafb;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#22c55e;
+    }
+
+    /* ---------- IMAGE GRID / BOXES ---------- */
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      min-height:190px;
+      background:#020617;
+      border:1px solid rgba(148,163,184,0.8);
+      box-shadow:0 16px 32px rgba(0,0,0,0.9);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.95) saturate(1.15);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.06);
+      filter:brightness(1.05) saturate(1.25);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(15,23,42,0.95) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#a5f3fc;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#e0f2fe;
+    }
+
+    /* ---------- INFO PILLS ---------- */
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(45,212,191,0.9);
+      background-image:linear-gradient(135deg,#22c1c3,#4ade80,#a855f7);
+      color:#022c22;
+      text-align:center;
+      box-shadow:0 10px 22px rgba(0,0,0,0.7);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#e5e7eb;
+      background:radial-gradient(circle at top,#22c1c322,#000000);
+      border-top:1px solid rgba(148,163,184,0.6);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+    .Explore {
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">City of Pearls • Telangana</div>
+      <h1>Hyderabad – <span>It Hub <br> to Cyber Towers</span></h1>
+      <p class="hero-subtitle">
+        Hyderabad, capital of Telangana, blends centuries of Nizam heritage with lakes, bazaars and one of
+        India's most dynamic IT and startup ecosystems.
+      </p>
+      <p class="hero-tagline">Charminar • Biryani • IT Hub • Pearls</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">
+        <a href="https://en.wikipedia.org/wiki/Hyderabad" target="_blank" class="Explore">Explore Hyderabad</a></button>
+        <button class="btn btn-outline">View Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- OVERVIEW -->
+     <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Hyderabad combines historic monuments, palaces and tombs with lakes, parks, film studios and modern
+        entertainment zones.
+      </p>
+      <p class="muted">
+        Popular experiences span Charminar and Laad Bazaar, Golconda Fort and Qutb Shahi Tombs, Hussain Sagar
+        Lake and Ramoji Film City, along with museums and food streets.
+      </p>
+
+      <div class="image-grid">
+        <div class="image-box">
+          <img src="/tejas/image/telangana/charminar.jpg" alt="Charminar Hyderabad">
+          <div class="image-overlay">
+            <div class="image-title">Charminar & Old City Bazaars</div>
+            <div class="image-sub">
+              16th‑century monument set amid Laad Bazaar, historic mosques and traditional snack and pearl shops.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/tejas/image/telangana/golconda fort.jpg" alt="Golconda Fort Hyderabad">
+          <div class="image-overlay">
+            <div class="image-title">Golconda Fort & Qutb Shahi Tombs</div>
+            <div class="image-sub">
+              Vast hill fort with acoustic points and light‑and‑sound shows, paired with royal tombs nearby.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/tejas/image/telangana/hussain sagar lake.jpg" alt="Hussain Sagar Lake Hyderabad">
+          <div class="image-overlay">
+            <div class="image-title">Hussain Sagar Lake & Necklace Road</div>
+            <div class="image-sub">
+              Lakefront area with parks, temples and city views, popular for boat rides and evening walks.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/tejas/image/telangana/ramoji film city.jpg" alt="Ramoji Film City Hyderabad">
+          <div class="image-overlay">
+            <div class="image-title">Ramoji Film City & Theme Zones</div>
+            <div class="image-sub">
+              Giant film studio complex offering themed sets, rides and live shows on a full‑day excursion.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="overview">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Hyderabad stands on the banks of the Musi River and was founded in 1591 by Muhammad Quli Qutb Shah of
+            the Qutb Shahi dynasty, with Charminar as its central landmark.
+          </p>
+          <p>
+            Under the Asaf Jahi Nizams it grew into a major centre for pearls, textiles and Indo‑Islamic culture,
+            giving it the names "City of Pearls" and "City of Nizams".
+          </p>
+          <p class="muted">
+            Today Hyderabad combines heritage quarters in the old city with modern IT corridors like HITEC City
+            and Gachibowli.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Quick facts</h3>
+          <ul>
+            <li>Capital and largest city of Telangana.</li>
+            <li>Nicknames: City of Pearls, City of Nizams.</li>
+            <li>Key sectors: IT, pharma, biotech, film, trade and tourism.</li>
+            <li>Languages: Telugu and Urdu official; English widely used.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Hyderabad has hot summers, a humid monsoon driven by southwest winds and generally mild, dry winters.
+          </p>
+          <p>
+            Travel guides usually recommend visiting between November and February, when temperatures are more
+            comfortable for walking tours and outdoor food or lake visits.
+          </p>
+          <p class="muted">
+            Summer can see daytime readings above 40 degrees Celsius, while monsoon showers from June to September
+            moderate heat but increase humidity.
+          </p>
+        </div>
+        <div class="info-row">
+          <div class="pill">Best season: Nov – Feb.</div>
+          <div class="pill">Summer highs: Around 40–45°C.</div>
+          <div class="pill">Winter range: Roughly 13–29°C.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & ECONOMY -->
+    <section id="culture">
+      <h2>Culture, food & economy</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Hyderabad's culture blends Deccani, Telugu and Urdu influences, visible in its architecture, language,
+            literature and festivals.
+          </p>
+          <p>
+            The city's food identity is defined by Hyderabadi biryani, haleem during Ramadan, kebabs and rich
+            desserts, supported by a strong café and street‑food culture.
+          </p>
+          <p class="muted">
+            As a major IT and pharmaceutical hub with global firms and tech parks, Hyderabad also attracts students,
+            professionals and entrepreneurs from all over India and abroad.
+          </p>
+        </div>
+        <div class="card">
+          <h3>What makes Hyderabad special?</h3>
+          <ul>
+            <li>Historic royal city that evolved into a leading IT and innovation centre.</li>
+            <li>Internationally famous for biryani and diverse street food culture.</li>
+            <li>Compact mix of monuments, museums, lakes, malls and entertainment parks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Travellers often plan 3–4 days for Charminar, old city walks, Golconda Fort, Hussain Sagar, museums and
+        a full‑day visit to Ramoji Film City or nearby parks.
+      </p>
+      <ul>
+        <li>Choose winter months for walking tours and fort climbs with comfortable temperatures.</li>
+        <li>Use metro, buses, cabs and autos; narrow old‑city lanes are easier on foot or in auto‑rickshaws.</li>
+        <li>Visit Charminar and food lanes in the evening for lights and snacks, and time Golconda for late‑afternoon or sunset views.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Hyderabad – City of Pearls & Tech Hub • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

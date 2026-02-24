@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tiruvanthpuram – Evergreen Capital of Kerala</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(90deg,#00d4ff,#ff4d6d);
+      --header-bg: linear-gradient(120deg,#00b8e6,#ff4d6d);
+      --accent-1: #00d4ff;
+      --accent-2: #ff4d6d;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#0a0f1e;
+      color:#f0f4ff;
+      line-height:1.6;
+    }
+
+    /* HERO WITH BACKGROUND IMAGE */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.667), rgba(0,0,0,0.8)),
+        url("/tejas/image/Kerala/trichi.jpeg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+   h1 span{
+      background:linear-gradient(90deg,#0f3e5b,#ff4d6d);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#e8f2ff;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#a3d8ff;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:var(--header-bg);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#d0e8ff;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(12,17,38,0.96);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#a3d8ff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:var(--primary-gradient);
+    }
+    p{
+      font-size:15px;
+      color:#e6ecff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#c8d8ff;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(15,22,50,0.97);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#b8e6ff;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#d4e2ff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:var(--accent-1);
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#f0e8ff;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(20,28,60,0.95);
+      color:#f0e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#a8b8d8;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+
+    /* 🌈 CITY-SPECIFIC DUAL COLOR THEMES */
+    .chennai-theme { 
+      --primary-gradient: linear-gradient(90deg,#ff6b35,#f7931e); 
+      --header-bg: linear-gradient(120deg,#ff8e53,#f39c12); 
+      --accent-1: #ff6b35; 
+      --accent-2: #f7931e; 
+    }
+    .bengaluru-theme { 
+      --primary-gradient: linear-gradient(90deg,#667eea,#764ba2); 
+      --header-bg: linear-gradient(120deg,#5a67d8,#805ad5); 
+      --accent-1: #667eea; 
+      --accent-2: #764ba2; 
+    }
+    .tiruvanthpuram-theme { 
+      --primary-gradient: linear-gradient(90deg,#00b894,#00cec9); 
+      --header-bg: linear-gradient(120deg,#00a085,#00b894); 
+      --accent-1: #00b894; 
+      --accent-2: #00cec9; 
+    }
+  </style>
+</head>
+<body class="tiruvanthpuram-theme">
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Evergreen City • Kerala</div>
+      <h1>Tiruvanthpuram – <span>Land of Temples</span></h1>
+      <p class="hero-subtitle">
+        Tiruvanthpuram, capital of Kerala, blends ancient temple heritage, serene beaches, lush greenery and space research hub status, offering cultural depth with modern scientific achievements.
+      </p>
+      <p class="hero-tagline">Temples • Beaches • Ayurveda • Space City</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Explore Trivandrum</button>
+        <button class="btn btn-outline">View Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CITY OVERVIEW -->
+     <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Padmanabhaswamy Temple headlines with its towering gopuram and immense wealth, alongside Kovalam Beach, Napier Museum, Shanghumugham Beach and Science & Technology Museum complex.
+      </p>
+      <p class="muted">
+        Cultural gems include Kerala Secretariat, Attukal Temple, Chowara Beach, plus nearby Poovar estuary and Varkala cliff beach destination.
+      </p>
+
+      <div class="image-grid">
+        <!-- BOX 1 -->
+        <div class="image-box">
+          <img src="/tejas/image/Kerala/padmanabhaswamy temple kerala.jpeg" alt="Padmanabhaswamy Temple Tiruvanthpuram">
+          <div class="image-overlay">
+            <div class="image-title">Padmanabhaswamy Temple</div>
+            <div class="image-sub">
+              18th-century Vishnu temple famed for 18-ft reclining idol and legendary hidden treasures.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="image-box">
+          <img src="/tejas/image/Kerala/Kovalam Lighthouse Beach kerala.jpeg" alt="Kovalam Beach Tiruvanthpuram">
+          <div class="image-overlay">
+            <div class="image-title">Kovalam Lighthouse Beach</div>
+            <div class="image-sub">
+              World-famous crescent beach with lighthouse, resorts, ayurveda centers and seafood.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="image-box">
+          <img src="/tejas/image/Kerala/Napier Museum kerala.jpeg" alt="Napier Museum Tiruvanthpuram">
+          <div class="image-overlay">
+            <div class="image-title">Napier Museum</div>
+            <div class="image-sub">
+              Indo-Saracenic architecture housing natural history, art and bronze collections.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="image-box">
+          <img src="/tejas/image/Kerala/Shanghumugham Beach kerala.jpg" alt="Shanghumugham Beach Tiruvanthpuram">
+          <div class="image-overlay">
+            <div class="image-title">Shanghumugham Beach</div>
+            <div class="image-sub">
+              Popular city beach with mermaid statue, cafes, evening promenade and sea views.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="overview">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Tiruvanthpuram serves as Kerala's capital and administrative center, renowned for its rich cultural heritage, literacy and India's premier space research facility Vikram Sarabhai Space Centre.
+         </p>
+         <p>
+           Name meaning "City of Lord Anantha," founded around the sacred Padmanabhaswamy Temple, evolved under Travancore Kingdom with European trade influences.
+         </p>
+         <p class="muted">
+           Known as Kerala's cultural capital with highest literacy rate, major IT parks and gateway to Kerala's famous backwaters and beaches.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Quick facts</h3>
+         <ul>
+           <li>Region: Southern coastal Kerala.</li>
+           <li>Key identity: Temple city, space research and cultural capital.</li>
+           <li>Population: Over 1.7 million in city area.</li>
+           <li>Languages: Malayalam, English, Tamil.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Tropical monsoon climate with high humidity, abundant rainfall and pleasant temperatures moderated by Arabian Sea breezes throughout the year.
+         </p>
+         <p>
+           Ideal visiting season spans October to March with comfortable weather perfect for temple visits, beach relaxation and cultural festivals.
+         </p>
+         <p class="muted">
+           Heavy southwest monsoon June-September with 2000mm+ rainfall; summer April-May hot and humid reaching 34°C.
+         </p>
+        </div>
+        <div class="info-row">
+         <div class="pill">Best season: Oct – Mar.</div>
+         <div class="pill">Summer highs: 32–35°C.</div>
+         <div class="pill">Monsoon: Jun – Sep.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & LIFESTYLE -->
+    <section id="culture">
+      <h2>Culture, food & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Heart of Kerala culture with Kathakali dance, Kalaripayattu martial arts, Onam harvest festival, classical music and temple rituals dominating daily life.
+         </p>
+         <p>
+           Authentic Kerala cuisine featuring appam-stew, fish curry-rice, banana leaf meals, payasam and toddy served in thatched beach shacks.
+         </p>
+         <p class="muted">
+           Famous ayurveda wellness tradition, handloom textiles, Kathakali theaters and highest literacy nurturing progressive society.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Why Trivandrum stands out</h3>
+         <ul>
+           <li>Padmanabhaswamy Temple - one of world's richest shrines.</li>
+           <li>Space research hub with VSSC and international launch facilities.</li>
+           <li>Perfect blend of temple tradition, beach paradise and green cityscape.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Plan 3 days for city temples/museums, 2 days Kovalam relaxation; use KSRTC buses, autos or cabs; extend for Varkala, Alleppey backwaters or Kanyakumari.
+      </p>
+      <ul>
+        <li>Temple visits require strict dress code (dhoti for men, saree/churidar for women).</li>
+        <li>Year-round beach weather; monsoon offers dramatic ocean views but strong currents.</li>
+        <li>Try authentic Kerala sadhya meals; carry mosquito repellent for evenings.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Tiruvanthpuram – Evergreen Capital of Kerala • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

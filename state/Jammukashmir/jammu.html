@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jammu & Kashmir – Paradise on Earth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#0a0f1e;
+      color:#f0f4ff;
+      line-height:1.6;
+    }
+
+    /* HERO WITH BACKGROUND IMAGE */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(73, 72, 72, 0.55), rgba(0,0,0,0.8)),
+        url("/tejas/image/jammu\ kashmir/Jammu kashmir.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#4a90e2,#7b68ee,#b19cd9);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#e8f2ff;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#a3d8ff;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#4a90e2,#7b68ee);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#d0e8ff;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(12,17,38,0.96);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#a3d8ff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#4a90e2,#7b68ee);
+    }
+    p{
+      font-size:15px;
+      color:#e6ecff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#c8d8ff;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(15,22,50,0.97);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#b8e6ff;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#d4e2ff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#4a90e2;
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#f0e8ff;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(20,28,60,0.95);
+      color:#f0e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#a8b8d8;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Crown Jewel • Himalayan Paradise</div>
+      <h1>Jammu & Kashmir – <span>Paradise on Earth</span></h1>
+      <p class="hero-subtitle">
+        Jammu & Kashmir captivates with snow-capped Himalayas, pristine Dal Lake, lush meadows, houseboats, saffron fields, adventure sports and rich multicultural heritage amidst breathtaking valleys.
+      </p>
+      <p class="hero-tagline">Snow • Lakes • Houseboats • Shikara Rides</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Explore Kashmir</button>
+        <button class="btn btn-outline">Valley Guide</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CITY OVERVIEW -->
+     <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Signature spots include Srinagar's Dal/Nigeen Lakes with houseboats, Mughal gardens (Shalimar/Nishat), Gulmarg gondola (Asia's highest), Pahalgam meadows, Sonamarg glaciers.
+      </p>
+      <p class="muted">
+        Ladakh offers Leh Palace, Pangong Lake, Nubra Valley camel safari, Khardung La pass; Jammu features Vaishno Devi, Patnitop hills and ancient temples.</p>
+
+      <div class="image-grid">
+        <!-- BOX 1 -->
+        <div class="image-box">
+          <img src="/tejas/image/jammu kashmir/dal lake ladakh.jpg" alt="Dal Lake Srinagar">
+          <div class="image-overlay">
+            <div class="image-title">Dal Lake</div>
+            <div class="image-sub">
+              Iconic houseboat stays, shikara rides at sunset, floating markets and Himalayan backdrop.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="image-box">
+          <img src="/tejas/image/jammu kashmir/Gulmarg Gondola ladakh.jpg" alt="Gulmarg Gondola">
+          <div class="image-overlay">
+            <div class="image-title">Gulmarg Gondola</div>
+            <div class="image-sub">
+              World's second-highest cable car to Apharwat peak (13,400ft) for skiing and panoramas.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="image-box">
+          <img src="/tejas/image/jammu kashmir/Pahalgam Valley.jpeg" alt="Pahalgam Valley">
+          <div class="image-overlay">
+            <div class="image-title">Pahalgam Valley</div>
+            <div class="image-sub">
+              Lush meadows, Betaab Valley, Lidder River rafting, trekking base to Amarnath Yatra.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="image-box">
+          <img src="/tejas/image/jammu kashmir/Pangong Lake ladakh.jpeg" alt="Pangong Lake Ladakh">
+          <div class="image-overlay">
+            <div class="image-title">Pangong Lake</div>
+            <div class="image-sub">
+              Famous 3 Idiots filming location, color-changing saltwater lake at 14,270ft altitude.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="overview">
+      <h2>Region overview & history</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Jammu & Kashmir spans Himalayan ranges with Kashmir Valley's alpine beauty, Ladakh's high desert, Jammu's temples and over 7,000 glaciers, drawing adventure and nature lovers.
+         </p>
+         <p>
+           Ancient Silk Route crossroads blending Buddhist stupas, Mughal gardens, Dogra palaces and Kashmiri handicrafts with spiritual centers like Amarnath, Vaishno Devi.
+         </p>
+         <p class="muted">
+           Famous as "Switzerland of Asia," world's highest polo ground (Leh), apple/saffron bowl and adventure hub for trekking, rafting, skiing.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Quick facts</h3>
+         <ul>
+           <li>Region: Himalayas, northern India.</li>
+           <li>Key identity: Alpine valleys, high passes.</li>
+           <li>Population: ~14 million across UTs.</li>
+           <li>Languages: Kashmiri, Hindi, Urdu, Ladakhi.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Features varied climates from temperate Kashmir Valley to arid Ladakh cold desert, with glorious spring blossoms and snowy winters perfect for skiing.
+         </p>
+         <p>
+           Prime season April-June for flowers/trekking, September-October for autumn colors/golden foliage and December-February for snow sports at Gulmarg.
+         </p>
+         <p class="muted">
+           Winters drop to -10°C with heavy snowfall; summers pleasant 20-30°C; Ladakh accessible June-September before passes close.
+         </p>
+        </div>
+        <div class="info-row">
+         <div class="pill">Best: Apr–Jun, Sep–Oct.</div>
+         <div class="pill">Winter lows: -5 to -15°C.</div>
+         <div class="pill">Snow season: Dec–Mar.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & LIFESTYLE -->
+    <section id="culture">
+      <h2>Culture, food & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Rich tapestry of Kashmiri Pandit, Muslim, Buddhist and Dogra traditions with Pheran robes, Kashmiri carpets, papier-mâché, walnut woodcraft and Wazwan feasts.
+         </p>
+         <p>
+           Culinary delights feature Rogan Josh, Yakhni, Gushtaba, Kahwa tea, Dum Aloo; Ladakh offers momos, thukpa, butter tea amidst prayer flags and monasteries.
+         </p>
+         <p class="muted">
+           Spiritual hub with Amarnath Yatra, Kumbh Mela at Sangam, Hemis Festival; houseboat luxury, pony treks, winter carnivals and adventure tourism.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Why J&K stands out</h3>
+         <ul>
+           <li>Earth's most beautiful alpine destinations.</li>
+           <li>World-class skiing, trekking, rafting hub.</li>
+           <li>Unique multicultural Himalayan heritage.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Plan 7-10 days covering Srinagar-Gulmarg-Pahalgam-Sonamarg circuit + Ladakh extension; book houseboats in advance; carry warm layers year-round.
+      </p>
+      <ul>
+        <li>Permits needed for Ladakh border areas; altitude sickness precautions above 10,000ft.</li>
+        <li>Shikaras operate 8AM-midnight; Gulmarg gondola tickets sell out weekends.</li>
+        <li>Monsoon safe (July-Aug) unlike other hills; winter magic but roadblocks possible.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Jammu & Kashmir – Paradise on Earth • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

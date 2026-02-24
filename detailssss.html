@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Details & Payment - Travel Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .booking-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @media print {
+            body { background: white !important; padding: 0 !important; }
+            .booking-container { 
+                box-shadow: none !important; 
+                border-radius: 0 !important; 
+                max-width: none !important;
+                background: white !important;
+            }
+            .no-print { display: none !important; }
+            .print-receipt { display: block !important; }
+            .form-section:not(.print-receipt) { display: none !important; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .booking-header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .booking-header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+
+        .progress-bar {
+            display: flex;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 4px;
+            margin: 0 30px 30px;
+        }
+
+        .progress-step {
+            flex: 1;
+            height: 8px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active { background: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        .form-section {
+            display: none;
+            padding: 40px;
+        }
+
+        .form-section.active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .form-group { margin-bottom: 24px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+        }
+
+        .passenger-counter {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .passenger-counter h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .counter-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .counter-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-minus { background: #ff6b6b; color: white; }
+        .btn-plus { background: #4ecdc4; color: white; }
+        .counter-display {
+            background: rgba(255,255,255,0.3);
+            width: 80px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+        }
+
+        .passenger-section {
+            display: none;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            animation: slideUp 0.5s ease;
+        }
+
+        .passenger-section.active {
+            display: block;
+        }
+
+        .passenger-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .passenger-header h4 {
+            color: #333;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .remove-passenger {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .remove-passenger:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .payment-summary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; }
+        .summary-row.total { 
+            font-size: 24px; 
+            font-weight: 700; 
+            border-top: 2px solid rgba(255,255,255,0.3); 
+            padding-top: 12px; 
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .payment-method {
+            padding: 20px;
+            border: 3px solid #e1e5e9;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+        }
+
+        .payment-method:hover { transform: translateY(-2px); }
+        .payment-method.active {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .payment-method i { font-size: 32px; margin-bottom: 8px; display: block; }
+
+        .card-details, .upi-details { display: none; margin-top: 20px; }
+        .card-details.active, .upi-details.active { display: block; }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,107,107,0.3); }
+
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+
+        /* FIXED RECEIPT DESIGN */
+        .print-receipt {
+            display: none;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .receipt-wrapper {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .receipt-header {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .receipt-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .booking-id-display {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .receipt-date {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .receipt-body {
+            padding: 50px 40px;
+        }
+
+        .receipt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(248,250,252,0.8));
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-card i { font-size: 28px; color: #00d4ff; }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 16px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .info-value {
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .passenger-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .passenger-list .info-row {
+            font-size: 14px;
+            padding: 12px 0;
+        }
+
+        .payment-section {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(254,202,87,0.15));
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .payment-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #c53030;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .payment-total {
+            font-size: 32px !important;
+            font-weight: 800 !important;
+            color: #c53030 !important;
+            border-top: 3px solid rgba(255,107,107,0.5) !important;
+            padding-top: 25px !important;
+        }
+
+        .barcode-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.1));
+            border-radius: 20px;
+        }
+
+        .barcode-code {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #00d4ff;
+            margin: 15px 0;
+        }
+
+        .footer-section {
+            text-align: center;
+            padding: 40px 30px;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.5);
+            margin-top: 40px;
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row, .receipt-grid { grid-template-columns: 1fr; }
+            .nav-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-header">
+            <h1><i class="fas fa-plane-departure"></i> Complete Booking</h1>
+            <p>Secure payment & professional receipt</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+        </div>
+
+        <!-- PASSENGER FORM WITH + - COUNTER -->
+        <div id="passengerSection" class="form-section active">
+            <div class="passenger-counter">
+                <h3><i class="fas fa-users"></i> Add Passengers</h3>
+                <div class="counter-buttons">
+                    <button class="counter-btn btn-minus" onclick="changePassengers(-1)">−</button>
+                    <div class="counter-display" id="passengerCount">1</div>
+                    <button class="counter-btn btn-plus" onclick="changePassengers(1)">+</button>
+                </div>
+                <p style="margin-top: 10px; font-size: 14px;">Click + to add more passengers</p>
+            </div>
+
+            <!-- DYNAMIC PASSENGER SECTIONS -->
+            <div id="passengersContainer"></div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Address *</label>
+                    <textarea id="address" class="form-control" rows="3" required placeholder="Complete address with city, state, pincode"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-plane"></i> From City *</label>
+                    <input type="text" id="fromCity" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-flag"></i> To City *</label>
+                    <input type="text" id="toCity" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-calendar"></i> Travel Date *</label>
+                    <input type="date" id="travelDate" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-couch"></i> Class</label>
+                <select id="travelClass" class="form-control">
+                    <option value="economy">Economy</option>
+                    <option value="premium">Premium Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first">First Class</option>
+                </select>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="button" class="btn btn-secondary" onclick="window.location.reload()">Reset</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Continue to Payment</button>
+            </div>
+        </div>
+
+        <!-- PAYMENT SECTION -->
+        <div id="paymentSection" class="form-section">
+            <div class="payment-summary">
+                <div class="summary-row"><span id="baseFareText">Base Fare</span><span id="baseFare">₹12,500</span></div>
+                <div class="summary-row"><span>Taxes & Fees</span><span id="taxes">₹1,250</span></div>
+                <div class="summary-row total"><span>Total Amount</span><span id="totalAmount">₹13,750</span></div>
+            </div>
+            <div class="form-group">
+                <label>Choose Payment Method</label>
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <div>Credit/Debit Card</div>
+                    </div>
+                    <div class="payment-method" data-method="upi">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>UPI</div>
+                    </div>
+                </div>
+            </div>
+            <div id="cardDetails" class="card-details active">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" id="cardNumber" class="form-control" maxlength="19" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-group">
+                        <label>Expiry (MM/YY)</label>
+                        <input type="text" id="expiry" class="form-control" maxlength="5" placeholder="MM/YY">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="password" id="cvv" class="form-control" maxlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label>Name on Card</label>
+                        <input type="text" id="cardName" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div id="upiDetails" class="upi-details">
+                <div class="form-group">
+                    <label><i class="fas fa-mobile-alt"></i> UPI ID *</label>
+                    <input type="text" id="upiId" class="form-control" placeholder="yourname@paytm / @oksbi / @phonepe">
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button type="button" class="btn btn-secondary" onclick="previousStep()">Back</button>
+                <button type="button" class="btn btn-primary" onclick="processPayment()">
+                    Pay Now <span id="payAmount">₹13,750</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SUCCESS SCREEN -->
+        <div id="successSection" class="form-section no-print">
+            <div style="text-align: center; padding: 60px 40px; color: #28a745;">
+                <div style="font-size: 80px; margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
+                <h2>Payment Successful!</h2>
+                <p id="successMsg">Your booking is confirmed. Receipt ready for print.</p>
+                <div class="nav-buttons" style="justify-content: center;">
+                    <button class="btn btn-primary" onclick="printReceipt()">🖨️ Print Receipt</button>
+                    <button class="btn btn-secondary" onclick="window.location.reload()">Book Another</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERFECT RECEIPT WITH ALL PASSENGER NAMES -->
+        <div id="receiptSection" class="form-section print-receipt">
+            <div class="receipt-wrapper">
+                <div class="receipt-header">
+                    <h1><i class="fas fa-plane-departure"></i> E-Ticket Receipt</h1>
+                    <div class="booking-id-display" id="printBookingId">TRV000000</div>
+                    <div class="receipt-date" id="printDate">Feb 11, 2026</div>
+                </div>
+
+                <div class="receipt-body">
+                    <div class="receipt-grid">
+                        <div class="info-card">
+                            <h3><i class="fas fa-users"></i> All Passengers (<span id="printPassengerCount">1</span>)</h3>
+                            <div id="printPassengerList" class="passenger-list">
+                                <!-- ALL PASSENGER NAMES WILL APPEAR HERE -->
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Lead Address:</span>
+                                <span class="info-value" id="printAddress">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3><i class="fas fa-map-marked-alt"></i> Journey Details</h3>
+                            <div class="info-row">
+                                <span class="info-label">From:</span>
+                                <span class="info-value" id="printFromCity">Loading...</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">To:</span>
+                                <span class="info-value" id="printToCity">Loading...</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Date:</span>
+                                <span class="info-value" id="printTravelDate">Loading...</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Class:</span>
+                                <span class="info-value" id="printTravelClass">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card payment-section">
+                        <h3><i class="fas fa-receipt"></i> Payment Summary</h3>
+                        <div class="payment-row">
+                            <span id="printBaseFareText">Base Fare</span>
+                            <span id="printBaseFare">₹12,500</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Taxes & Fees</span>
+                            <span id="printTaxes">₹1,250</span>
+                        </div>
+                        <div class="payment-row payment-total">
+                            <span>Total Amount Paid</span>
+                            <span id="printTotalAmount">₹13,750</span>
+                        </div>
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.3); font-size: 16px;">
+                            Payment Method: <span class="info-value" id="printPaymentMethod" style="font-weight: 600;">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="barcode-section">
+                        <div style="font-size: 18px; font-weight: 600; margin-bottom: 15px;">Booking Reference</div>
+                        <div class="barcode-code" id="printRefCode">TRV-000000</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 16px; color: #666;">|| ||| || ||| || ||| || ||| || |||</div>
+                    </div>
+
+                    <div class="footer-section">
+                        <p><strong>✈️ Thank you for choosing SkyTravel!</strong></p>
+                        <p>Please present this receipt at check-in counter</p>
+                        <p style="font-weight: 600; color: #2d3748;">📞 +91-XXXXXXXXXX | ✉️ support@skytravel.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global booking data
+        let bookingData = {};
+        let currentStep = 0;
+        let passengerCount = 1;
+        let passengers = [];
+
+        // Initialize first passenger
+        document.addEventListener('DOMContentLoaded', function() {
+            createPassengerSection(1);
+            document.getElementById('travelDate').min = new Date().toISOString().split('T')[0];
+        });
+
+        // + - Passenger Counter
+        function changePassengers(delta) {
+            let newCount = passengerCount + delta;
+            if (newCount < 1) newCount = 1;
+            if (newCount > 10) newCount = 10; // Max 10 passengers
+            
+            if (newCount !== passengerCount) {
+                passengerCount = newCount;
+                document.getElementById('passengerCount').textContent = passengerCount;
+                renderPassengers();
+                updatePricing();
+            }
+        }
+
+        function renderPassengers() {
+            const container = document.getElementById('passengersContainer');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= passengerCount; i++) {
+                createPassengerSection(i);
+            }
+        }
+
+        function createPassengerSection(index) {
+            const container = document.getElementById('passengersContainer');
+            const passengerDiv = document.createElement('div');
+            passengerDiv.className = `passenger-section passenger-${index} active`;
+            passengerDiv.innerHTML = `
+                <div class="passenger-header">
+                    <h4><i class="fas fa-user"></i> Passenger ${index} ${index === 1 ? '<span style="color: #ff6b6b;">*</span>' : ''}</h4>
+                    ${index > 1 ? '<button class="remove-passenger" onclick="removePassenger(' + index + ')"><i class="fas fa-times"></i></button>' : ''}
+                </div>
+                <div class="form-group">
+                    <label>Full Name ${index === 1 ? '*' : ''}</label>
+                    <input type="text" class="form-control passenger-name" data-index="${index}" ${index === 1 ? 'required' : ''}>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Mobile No ${index === 1 ? '*' : ''}</label>
+                        <input type="tel" class="form-control passenger-mobile" data-index="${index}" ${index === 1 ? 'required' : ''}>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control passenger-email" data-index="${index}">
+                    </div>
+                </div>
+            `;
+            container.appendChild(passengerDiv);
+        }
+
+        function removePassenger(index) {
+            document.querySelector(`.passenger-${index}`).remove();
+            passengerCount--;
+            document.getElementById('passengerCount').textContent = passengerCount;
+            
+            // Re-index remaining passengers
+            const remaining = document.querySelectorAll('.passenger-section');
+            remaining.forEach((pax, idx) => {
+                pax.className = `passenger-section active passenger-${idx + 1}`;
+                pax.querySelector('h4').innerHTML = `<i class="fas fa-user"></i> Passenger ${idx + 1} ${idx + 1 === 1 ? '<span style="color: #ff6b6b;">*</span>' : ''}`;
+                pax.querySelectorAll('input').forEach(input => {
+                    input.dataset.index = idx + 1;
+                });
+            });
+            
+            updatePricing();
+        }
+
+        function updatePricing() {
+            const basePrice = 12500;
+            const taxRate = 0.1;
+            const totalBase = basePrice * passengerCount;
+            const totalTax = totalBase * taxRate;
+            const grandTotal = totalBase + totalTax;
+            
+            document.getElementById('baseFareText').textContent = `Base Fare (${passengerCount} Pax)`;
+            document.getElementById('baseFare').textContent = `₹${totalBase.toLocaleString()}`;
+            document.getElementById('taxes').textContent = `₹${Math.round(totalTax).toLocaleString()}`;
+            document.getElementById('totalAmount').textContent = `₹${Math.round(grandTotal).toLocaleString()}`;
+            document.getElementById('payAmount').textContent = `₹${Math.round(grandTotal).toLocaleString()}`;
+        }
+
+        // ✅ FIXED: Next Step - Perfect Data Capture
+        function nextStep() {
+            // Capture all passenger data
+            passengers = [];
+            let hasValidLead = true;
+            
+            document.querySelectorAll('.passenger-section').forEach((section, index) => {
+                const name = section.querySelector('.passenger-name').value.trim();
+                const mobile = section.querySelector('.passenger-mobile').value.trim();
+                const email = section.querySelector('.passenger-email').value.trim() || 'Not provided';
+                
+                if (index === 0 && (!name || !mobile)) {
+                    hasValidLead = false;
+                    section.querySelector('.passenger-name').style.borderColor = '#ff6b6b';
+                    section.querySelector('.passenger-mobile').style.borderColor = '#ff6b6b';
+                }
+                
+                passengers.push({ name, mobile, email });
+            });
+
+            // Validate lead passenger and journey details
+            const fields = {
+                address: document.getElementById('address').value.trim(),
+                fromCity: document.getElementById('fromCity').value.trim(),
+                toCity: document.getElementById('toCity').value.trim(),
+                travelDate: document.getElementById('travelDate').value
+            };
+
+            let valid = true;
+            Object.keys(fields).forEach(key => {
+                if (!fields[key]) {
+                    valid = false;
+                    document.getElementById(key).style.borderColor = '#ff6b6b';
+                } else {
+                    document.getElementById(key).style.borderColor = '#e1e5e9';
+                }
+            });
+
+            if (!hasValidLead || !valid) {
+                alert('Please fill all required fields (*) for Lead Passenger (Passenger 1) and journey details');
+                return;
+            }
+
+            // ✅ CAPTURE ALL DATA
+            bookingData = {
+                passengers,
+                passengerCount,
+                address: fields.address,
+                fromCity: fields.fromCity,
+                toCity: fields.toCity,
+                travelDate: fields.travelDate,
+                travelClass: document.getElementById('travelClass').value || 'Economy'
+            };
+
+            console.log('✅ DATA SAVED:', bookingData);
+
+            // Update UI
+            document.querySelectorAll('.progress-step')[0].classList.remove('active');
+            document.querySelectorAll('.progress-step')[1].classList.add('active');
+            document.getElementById('passengerSection').classList.remove('active');
+            document.getElementById('paymentSection').classList.add('active');
+        }
+
+        function previousStep() {
+            document.getElementById('paymentSection').classList.remove('active');
+            document.getElementById('passengerSection').classList.add('active');
+            document.querySelectorAll('.progress-step')[1].classList.remove('active');
+            document.querySelectorAll('.progress-step')[0].classList.add('active');
+        }
+
+        // Payment method selection
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.payment-method')) {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                e.target.closest('.payment-method').classList.add('active');
+                document.getElementById('cardDetails').classList.toggle('active', e.target.closest('.payment-method').dataset.method === 'card');
+                document.getElementById('upiDetails').classList.toggle('active', e.target.closest('.payment-method').dataset.method === 'upi');
+            }
+        });
+
+        // Card formatting
+        document.addEventListener('input', function(e) {
+            if (e.target.id === 'cardNumber') {
+                let val = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                let parts = [];
+                for (let i = 0; i < val.length; i += 4) {
+                    parts.push(val.substr(i, 4));
+                }
+                e.target.value = parts.join(' ').substr(0, 19);
+            }
+            if (e.target.id === 'expiry') {
+                let val = e.target.value.replace(/\D/g, '');
+                if (val.length >= 2) {
+                    e.target.value = val.slice(0,2) + '/' + val.slice(2,4);
+                } else {
+                    e.target.value = val;
+                }
+            }
+        });
+
+        // ✅ FIXED: Payment Processing - ALL PASSENGERS PRINT
+        function processPayment() {
+            const activeMethod = document.querySelector('.payment-method.active').dataset.method;
+            
+            if (activeMethod === 'card') {
+                if (!document.getElementById('cardNumber').value || 
+                    !document.getElementById('expiry').value || 
+                    !document.getElementById('cvv').value) {
+                    alert('Please fill all card details');
+                    return;
+                }
+            } else if (activeMethod === 'upi') {
+                if (!document.getElementById('upiId').value.trim()) {
+                    alert('Please enter your UPI ID');
+                    return;
+                }
+            }
+
+            // Generate unique booking ID
+            const bookingId = 'TRV' + Date.now().toString().slice(-6);
+            
+            // ✅ POPULATE RECEIPT WITH ALL PASSENGER NAMES
+            document.getElementById('printBookingId').textContent = bookingId;
+            document.getElementById('printDate').textContent = new Date().toLocaleString('en-IN');
+            document.getElementById('printPassengerCount').textContent = bookingData.passengerCount;
+            document.getElementById('printFromCity').textContent = bookingData.fromCity;
+            document.getElementById('printToCity').textContent = bookingData.toCity;
+            document.getElementById('printTravelDate').textContent = new Date(bookingData.travelDate).toLocaleDateString('en-IN');
+            document.getElementById('printTravelClass').textContent = bookingData.travelClass.charAt(0).toUpperCase() + bookingData.travelClass.slice(1);
+            document.getElementById('printAddress').textContent = bookingData.address;
+            
+            // 🔥 PRINT ALL PASSENGER NAMES
+            const passengerList = document.getElementById('printPassengerList');
+            passengerList.innerHTML = '';
+            bookingData.passengers.forEach((passenger, index) => {
+                const row = document.createElement('div');
+                row.className = 'info-row';
+                row.innerHTML = `
+                    <span class="info-label">P${index + 1}:</span>
+                    <span class="info-value">${passenger.name} (${passenger.mobile})</span>
+                `;
+                passengerList.appendChild(row);
+            });
+            
+            // Update pricing in receipt
+            const basePrice = 12500 * bookingData.passengerCount;
+            const tax = Math.round(basePrice * 0.1);
+            const total = basePrice + tax;
+            document.getElementById('printBaseFareText').textContent = `Base Fare (${bookingData.passengerCount} Pax)`;
+            document.getElementById('printBaseFare').textContent = `₹${basePrice.toLocaleString()}`;
+            document.getElementById('printTaxes').textContent = `₹${tax.toLocaleString()}`;
+            document.getElementById('printTotalAmount').textContent = `₹${total.toLocaleString()}`;
+            
+            document.getElementById('printPaymentMethod').textContent = activeMethod === 'card' ? 'Credit/Debit Card' : `UPI (${document.getElementById('upiId').value.trim()})`;
+            document.getElementById('printRefCode').textContent = 'TRV-' + bookingId;
+
+            // Show success
+            document.getElementById('paymentSection').classList.remove('active');
+            document.getElementById('successSection').classList.add('active');
+            
+            // Admin data
+            console.log('🎫 COMPLETE BOOKING FOR ADMIN:', {
+                bookingId, 
+                amount: total, 
+                paymentMethod: activeMethod, 
+                passengerCount: bookingData.passengerCount,
+                passengers: bookingData.passengers,
+                ...bookingData, 
+                status: 'confirmed'
+            });
+        }
+
+        function printReceipt() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

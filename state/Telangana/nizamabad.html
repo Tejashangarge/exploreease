@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nizamabad – Heritage City of Telangana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#050816;
+      color:#f5f5f5;
+      line-height:1.6;
+    }
+
+    /* ---------- HERO WITH YOUR BACKGROUND IMAGE ---------- */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)),
+        url("/image/Telangana/Nizamabad-hero.jpg"); /* change this path */
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+      color:#ffe8c2;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#ffbf69,#ff6b6b);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#f7e9d8;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#ffd27f;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#ff9f1c,#ff6b6b);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#ffe8c2;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    /* ---------- MAIN LAYOUT ---------- */
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      border-radius:18px;
+      padding:22px 20px 24px;
+      box-shadow:0 14px 35px rgba(0,0,0,0.7);
+      border:1px solid rgba(255,255,255,0.12);
+      backdrop-filter:blur(18px);
+    }
+
+    /* different colorful gradients for each section */
+    #overview{
+      background-image:linear-gradient(135deg,#1b1b3a,#3a1b47,#ff9f1c);
+    }
+    #climate{
+      background-image:linear-gradient(135deg,#102a43,#0b7285,#20c997);
+    }
+    #attractions{
+      background-image:linear-gradient(135deg,#241b3a,#b5179e,#ff6b6b);
+    }
+    #culture{
+      background-image:linear-gradient(135deg,#1b263b,#4158d0,#c850c0);
+    }
+    #tips{
+      background-image:linear-gradient(135deg,#1b4332,#2d6a4f,#95d5b2);
+    }
+
+    /* ---------- HEADINGS & TEXT ---------- */
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#fff7e6;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      text-shadow:0 2px 6px rgba(0,0,0,0.6);
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#ffbf69,#ff6b6b);
+    }
+    p{
+      font-size:15px;
+      color:#fffaf2;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#f1e6ff;
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    /* ---------- GRID & CARDS ---------- */
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      border-radius:16px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.2);
+      background-image:linear-gradient(145deg,rgba(255,255,255,0.16),rgba(0,0,0,0.25));
+      box-shadow:0 12px 28px rgba(0,0,0,0.6);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#ffea99;
+      text-shadow:0 1px 4px rgba(0,0,0,0.5);
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#fdfbff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#ffe066;
+    }
+
+    /* ---------- IMAGE GRID / BOXES ---------- */
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      min-height:190px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.25);
+      box-shadow:0 14px 30px rgba(0,0,0,0.9);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.95) saturate(1.15);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.06);
+      filter:brightness(1.05) saturate(1.25);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#ffe8c2;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#ffdde1;
+    }
+
+    /* ---------- INFO PILLS ---------- */
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.55);
+      background-image:linear-gradient(135deg,#ff9f1c,#ff6b6b,#f72585);
+      color:#fff;
+      text-align:center;
+      box-shadow:0 8px 18px rgba(0,0,0,0.6);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#f1e6ff;
+      background:radial-gradient(circle at top,#ff9f1c22,#000000);
+      border-top:1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Heritage City • Telangana</div>
+      <h1>Nizamabad – <span>Fort, Fields & Lakes</span></h1>
+      <p class="hero-subtitle">
+        Nizamabad, also known as Indur, is a major city in northern Telangana, noted for its historic fort,
+        ancient temples, reservoirs and rich agricultural surroundings.
+      </p>
+      <p class="hero-tagline">Fort • Reservoirs • Green Countryside</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Discover Nizamabad</button>
+        <button class="btn btn-outline">View Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- OVERVIEW -->
+    <section id="overview">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Nizamabad lies on the Telangana Plateau in northern Telangana and serves as the administrative
+            headquarters of Nizamabad district.
+          </p>
+          <p>
+            The city has older names such as Indur and was historically part of Hyderabad State before becoming
+            part of modern Telangana; it takes its present name from Nizam Ali Khan, a ruler of the Asaf Jahi dynasty.
+          </p>
+          <p class="muted">
+            Rail and road links connect Nizamabad with Hyderabad and other regional centres, supporting trade in
+            rice, sugarcane, turmeric and textiles from the surrounding countryside.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Quick facts</h3>
+          <ul>
+            <li>Region: Northern Telangana, on the Deccan plateau.</li>
+            <li>Former name: Indur / Induru.</li>
+            <li>District: Headquarters of Nizamabad district.</li>
+            <li>Known for: Nizamabad Fort, reservoirs, agriculture and emerging IT hub.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Nizamabad has a tropical savanna climate with very hot summers, a pronounced monsoon season and
+            relatively mild winters.
+          </p>
+          <p>
+            Winter months from November to February, with cooler temperatures and drier air, are generally seen as
+            the best time for sightseeing and outdoor trips around the city.
+          </p>
+          <p class="muted">
+            Daytime temperatures in summer can exceed 40 degrees Celsius, while monsoon months bring frequent rains
+            that recharge reservoirs and make nearby countryside greener.
+          </p>
+        </div>
+        <div class="info-row">
+          <div class="pill">Best season: Nov – Feb.</div>
+          <div class="pill">Summer highs: Up to about 44–46°C.</div>
+          <div class="pill">Annual rainfall: Roughly around 1100 mm.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTRACTIONS -->
+    <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Nizamabad district offers a mix of heritage sites, hilltop temples, reservoirs, dams and eco‑tourism
+        spots, making it appealing for both pilgrims and nature lovers.
+      </p>
+      <p class="muted">
+        Key places include Nizamabad Fort, Alisagar and Ashok Sagar reservoirs, Pocharam Wildlife Sanctuary,
+        as well as temples and dams scattered around the district.
+      </p>
+
+      <div class="image-grid">
+        <div class="image-box">
+          <img src="your-image-1.jpg" alt="Nizamabad Fort Telangana">
+          <div class="image-overlay">
+            <div class="image-title">Nizamabad Fort & Raghunatha Temple</div>
+            <div class="image-sub">
+              Hilltop fort originally linked to Rashtrakuta rulers, later rebuilt by the Nizams, with a notable temple on its summit.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="your-image-2.jpg" alt="Alisagar reservoir Nizamabad">
+          <div class="image-overlay">
+            <div class="image-title">Alisagar & Ashok Sagar Reservoirs</div>
+            <div class="image-sub">
+              Popular picnic spots with gardens, water views and boating, surrounded by green countryside.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="your-image-3.jpg" alt="Pocharam Wildlife Sanctuary near Nizamabad">
+          <div class="image-overlay">
+            <div class="image-title">Pocharam Wildlife Sanctuary & Dam</div>
+            <div class="image-sub">
+              Sanctuary and reservoir area offering birdlife, forest landscapes and a quiet nature experience.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="your-image-4.jpg" alt="Nizam Sagar Dam near Nizamabad">
+          <div class="image-overlay">
+            <div class="image-title">Nizam Sagar & Irrigation Landscapes</div>
+            <div class="image-sub">
+              Large dam on the Manjira river that supports irrigation and creates scenic water views in the region.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE -->
+    <section id="culture">
+      <h2>Culture, economy & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Nizamabad's economy is driven by agriculture, especially rice and other crops, allied industries like
+            rice mills and sugar, and newer initiatives such as an IT hub.
+          </p>
+          <p>
+            The city's culture reflects a blend of Telugu, Deccan and historic Hyderabad influences, seen in its
+            festivals, food, language mix and built heritage.
+          </p>
+          <p class="muted">
+            Markets in and around the city trade in farm produce, spices and textiles, while new urban development
+            areas add malls and modern services.
+          </p>
+        </div>
+        <div class="card">
+          <h3>What makes Nizamabad special?</h3>
+          <ul>
+            <li>Important regional centre and third‑largest city in Telangana by population.</li>
+            <li>Strong mix of fort history, reservoirs and green rural landscapes around the city.</li>
+            <li>Growing IT and services presence alongside traditional agriculture and trade.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Travellers often spend 1–3 days exploring Nizamabad Fort, nearby reservoirs, dams and temple sites,
+        using local buses, autos and hired vehicles.
+      </p>
+      <ul>
+        <li>Plan fort and outdoor visits in early morning or late afternoon during summer to avoid midday heat.</li>
+        <li>Winter clothes can be light but helpful on cooler evenings between November and February.</li>
+        <li>During monsoon, check local conditions before planning trips to reservoirs, dams or forested areas.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Nizamabad – Heritage City of Telangana • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

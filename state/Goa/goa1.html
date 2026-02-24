@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Goa – Beach Paradise of India</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#0a0f1e;
+      color:#f0f4ff;
+      line-height:1.6;
+    }
+
+    /* HERO WITH BACKGROUND IMAGE */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)),
+        url("/tejas/image/goa.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#ff6b35,#f7931e,#ffd23f);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#e8f2ff;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#a3d8ff;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#ff6b35,#f7931e);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#d0e8ff;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(12,17,38,0.96);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#a3d8ff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#ff6b35,#f7931e);
+    }
+    p{
+      font-size:15px;
+      color:#e6ecff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#c8d8ff;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(15,22,50,0.97);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#b8e6ff;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#d4e2ff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#ff6b35;
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#f0e8ff;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(20,28,60,0.95);
+      color:#f0e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#a8b8d8;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Sunshine State • Beach Capital</div>
+      <h1>Goa – <span>Beach Paradise of India</span></h1>
+      <p class="hero-subtitle">
+        Goa, India's coastal gem on the Arabian Sea, blends pristine beaches, Portuguese heritage, vibrant nightlife, water sports and tropical luxury amidst coconut groves and laid-back beach shack culture.
+      </p>
+      <p class="hero-tagline">Beaches • Parties • Feni • Portuguese Heritage</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Explore Goa</button>
+        <button class="btn btn-outline">Beach Guide</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CITY OVERVIEW -->
+     <section id="attractions">
+      <h2>Major beaches & experiences</h2>
+      <p>
+        Iconic beaches include Baga, Calangute, Anjuna (famous for flea market), Palolem, Agonda, Colva, plus UNESCO-listed Old Goa churches, Dudhsagar Falls, spice plantations.
+      </p>
+      <p class="muted">
+        Adventure includes scuba diving at Grand Island, dolphin spotting, parasailing, sunset cruises, Portuguese mansions at Fontainhas and beach shack hopping.</p>
+
+      <div class="image-grid">
+        <!-- BOX 1 -->
+        <div class="image-box">
+          <img src="/tejas/image/Goa/baga beach goa.jpg" alt="Baga Beach Goa">
+          <div class="image-overlay">
+            <div class="image-title">Baga Beach</div>
+            <div class="image-sub">
+              North Goa's party beach with water sports, beach shacks, Tito's Lane nightlife and Thursday flea market.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="image-box">
+          <img src="/tejas/image/Goa/Palolem Beach goa.jpg" alt="Palolem Beach Goa">
+          <div class="image-overlay">
+            <div class="image-title">Palolem Beach</div>
+            <div class="image-sub">
+              South Goa's crescent-shaped paradise with calm waters, dolphin trips, beach huts and yoga retreats.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="image-box">
+          <img src="/tejas/image/Goa/Anjuna Beach.jpeg" alt="Anjuna Beach Goa">
+          <div class="image-overlay">
+            <div class="image-title">Anjuna Beach</div>
+            <div class="image-sub">
+              Hippie beach with famous Wednesday flea market, dramatic red cliffs, beach parties and rock formations.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="image-box">
+          <img src="/tejas/image/Goa/Bom Jesus Basilica goa.jpg" alt="Basilica of Bom Jesus Goa">
+          <div class="image-overlay">
+            <div class="image-title">Bom Jesus Basilica</div>
+            <div class="image-sub">
+              UNESCO World Heritage baroque church housing St. Francis Xavier's relics in Old Goa.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="overview">
+      <h2>State overview & history</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Goa is India's smallest state by area but famous worldwide for 125km coastline, golden beaches, luxury resorts and party reputation, attracting 8+ million tourists annually.
+         </p>
+         <p>
+           Former Portuguese colony for 451 years (1510-1961), Goa blends Indo-Portuguese architecture, cuisine and Catholic traditions with Hindu temples and Konkani culture.
+         </p>
+         <p class="muted">
+           Known as "Rome of the East" for churches, "Pearl of the Orient" for beauty, plus casinos, water sports, yoga retreats and spice plantations.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Quick facts</h3>
+         <ul>
+           <li>Region: Konkan coast, western India.</li>
+           <li>Key identity: Beach tourism, Portuguese heritage.</li>
+           <li>Population: 1.5 million residents.</li>
+           <li>Languages: Konkani, English, Hindi, Portuguese.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Goa enjoys tropical monsoon climate with hot summers, pleasant winters and heavy southwest monsoon, making it beach-perfect October to March.
+         </p>
+         <p>
+           Peak season November-February offers sunny days (28-32°C), calm seas for water sports and major festivals like Carnival, Christmas, New Year.
+         </p>
+         <p class="muted">
+           Monsoon (June-September) brings 3000mm rain, rough seas but lush greenery and 50-70% hotel discounts; summer (April-May) hits 35-40°C.
+         </p>
+        </div>
+        <div class="info-row">
+         <div class="pill">Best season: Nov – Feb.</div>
+         <div class="pill">Peak highs: 28–32°C.</div>
+         <div class="pill">Monsoon: Jun – Sep.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & LIFESTYLE -->
+    <section id="culture">
+      <h2>Culture, food & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Goa fuses Portuguese and Indian cultures with seafood feasts, feni liquor, beach parties, Carnival parades, Sao Joao boat festival and candlelit shack dining.
+         </p>
+         <p>
+           Culinary stars include prawn balchão, fish thali, vindaloo, bebinca dessert, plus international cuisines at beach resorts and Anjuna's organic markets.
+         </p>
+         <p class="muted">
+           Resort paradise with 5-star properties, casinos, wellness retreats, Russian/Israeli tourist hubs and year-round beach lifestyle.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Why Goa stands out</h3>
+         <ul>
+           <li>India's ultimate beach and party destination.</li>
+           <li>Unique Indo-Portuguese heritage and architecture.</li>
+           <li>Perfect mix of relaxation, adventure and nightlife.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Plan 5-7 days covering North Goa beaches/parties + South Goa relaxation/heritage; hire scooters/taxis; avoid peak New Year crowds if seeking tranquility.
+      </p>
+      <ul>
+        <li>North Goa (Baga/Calangute) for nightlife; South Goa (Palolem/Colva) for peace.</li>
+        <li>Beach shacks serve till late; many require cover charges during DJ nights.</li>
+        <li>Monsoon off-season offers 50-70% discounts but limited water sports.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Goa – Beach Paradise of India • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>
