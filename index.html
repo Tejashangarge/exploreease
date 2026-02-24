@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejas</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+/* CART MODAL STYLES - ENHANCED VERSION */
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <div class="logo"></div>
+            </div>
+            <div class="nav-address">
+                <p class="add-first">Travel To</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-second">India</p>
+                </div>
+            </div>
+            <div class="search-container">
+                <select id="stateSelect">
+                    <option value="">All</option>
+                </select>
+                <input type="text" class="text" placeholder="search">
+                <button onclick="searchstate()"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+            </div>
+            
+            <a href="/tejas/files/login.html" target="_blank" class="no-style">
+            <div class="first">
+            <p><span>Signin</span></p>
+            <p class="second">Account & List</p>
+            </div>
+            </a>
+
+            <a href="/tejas/files/packages.html" target="_blank" class="no-style">
+            <div class="first">
+            <p><span>Book Now</span></p>
+            <p class="second">Plan Your Trip</p>
+            </div>
+            </a>
+            
+            <!-- ENHANCED CLICKABLE CART WITH BADGE -->
+            <div class="nav-cart border" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                cart
+                <div class="cart-badge" id="cartBadge" style="display: none;">0</div>
+            </div>
+        </div>
+        
+        <div class="panel">
+    <!-- LEFT: All + Dropdown -->
+    <div class="panel-left">
+        <div class="panel-all border" id="allDropdownBtn">
+            <i class="fa-solid fa-bars"></i>
+            All
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="dropdown-link borderTRAIN">TRAIN</a>
+            <a href="https://www.easemytrip.com/" target="_blank" class="dropdown-link borderFLIGHT">FLIGHT</a>
+            <a href="https://www.redbus.in/" target="_blank" class="dropdown-link borderTRAVELLS">TRAVELS</a>
+            <a href="https://msrtc.maharashtra.gov.in/GeneralPages/Home.aspx" target="_blank" class="dropdown-link borderBUS">BUS</a>
+            <a href="https://www.oyorooms.com" target="_blank" class="dropdown-link borderHOTELS">HOTELS</a>
+            <a href="https://www.mumbaimetrotimes.com/mumbai-metro/" target="_blank" class="dropdown-link borderMETRO">METRO</a>
+        </div>
+    </div>
+
+    <ul id="optionsList"></ul>
+
+    <!-- CENTER: Main Navigation -->
+    <div class="panel-center">
+        <div class="panel-ops">
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="borderTRAIN">TRAIN</a>
+            <a href="https://www.easemytrip.com/..." target="_blank" class="borderFLIGHT">FLIGHT</a>
+            <a href="https://www.redbus.in/" target="_blank" class="borderTRAVELLS">TRAVELS</a>
+            <a href="https://msrtc.maharashtra.gov.in/GeneralPages/Home.aspx" target="_blank" class="borderBUS">BUS</a>
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="borderTRAIN">RAILWAY</a>
+            <a href="https://www.mumbaimetrotimes.com/mumbai-metro/" target="_blank" class="borderMETRO">METRO</a>
+            <a href="https://www.oyorooms.com" target="_blank" class="borderHOTELS">HOTELS</a>
+        </div>
+    </div>
+
+    <!-- RIGHT: Deals -->
+    <div class="panel-right">
+        <div class="panel-deals-group">
+            <a href="/tejas/files/packages.html" class="panel-deal" target="_blank">Tour Packages</a>
+            <a href="/Tejas/php/passenger_form.php" class="panel-deal" target="_blank">Book Your Tickets</a>
+            <a href="/Tejas/php/view_booking.php" class="panel-deal" target="_blank">Check Your Tickets</a>
+            <a href="/Tejas/php/admin_login.php" class="panel-deal" target="_blank">Admin Login</a>
+        </div>
+    </div>
+</div>
+
+    </header>
+
+    <div class="hero-section" id="hero">
+        <div class="hero-msg">Plan your trip with anytime ,anywhere ,everywhere. <a href="/tejas/files/login.html" target="_blank"> Click here to go to Explore Ease</a></div>
+        <div class="dots-container" id="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div class="shop-section">
+        <div class="box1 box" style="background-image: url(/Tejas/image/mumbaibg.jpg);">
+            <div class="box-content">
+                <h2>MUMBAI</h2>
+                <a href="/tejas/files/state/Maharashtra/mumbai.html">
+                    <div class="box-img" style="background-image: url('/Tejas/image/mumbai.jpg');"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Mumbai" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box2 box" style="background-image: url(/Tejas/image/hyderabadbg.jpg);">
+            <div class="box-content">
+                <h2>HYDERABAD</h2>
+                <a href="/tejas/files/state/Telangana/hyderabad.html">
+                    <div class="box-img" style="background-image: url('/Tejas/image/hyderabad.jpg');"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Hyderabad" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box3 box" style="background-image: url(/Tejas/image/chennai.jpg);">
+            <div class="box-content">
+                <h2>CHENNAI</h2>
+                <a href="/tejas/files/state/Tamil Nadu/chennai.html">
+                    <div class="box-img" style="background-image: url('/Tejas/image/chennaibg.jpg');"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Chennai" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box4 box" style="background-image: url(/Tejas/image/bengalurubg.jpg);">
+            <div class="box-content">
+                <h2>BENGALURU</h2>
+                <a href="/tejas/files/state/Karnataka/bengaluru.html">
+                    <div class="box-img" style="background-image: url('/Tejas/image/bengaluru.jpg');"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Bengaluru" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box5 box" style="background-image: url(/Tejas/image/thiruvanthpurambg.jpg);">
+            <div class="box-content">
+                <h2>TIRUVANTHPURAM</h2>
+                <a href="/tejas/files/state/Kerala/TIRUVANTHPURAM.html">
+                    <div class="box-img6" style="background-image: url(/Tejas/image/thiruvantpuram.jpg);"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Thiruvananthapuram" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box6 box" style="background-image: url(/Tejas/image/goabg.jpg);">
+            <div class="box-content">
+                <h2>GOA</h2>
+                <a href="/tejas/files/state/Goa/goa1.html">
+                    <div class="box-img" style="background-image: url(/Tejas/image/goa.jpg);"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Goa" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box7 box" style="background-image: url(/Tejas/image/vizagbg.jpg);">
+            <div class="box-content">
+                <h2>VIZAG</h2>
+                <a href="/tejas/files/state/Andhra Pradesh/vizag.html">
+                    <div class="box-img1" style="background-image: url(/Tejas/image/vizag.webp);"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Visakhapatnam" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+
+        <div class="box8 box" style="background-image: url(/Tejas/image/jammu\ &\ kashmir.jpg);">
+            <div class="box-content">
+                <h2>JAMMU & KASHMIR</h2>
+                <a href="/tejas/files/state/Jammukashmir/jammu.html">
+                    <div class="box-img" style="background-image: url(/Tejas/image/jammu\ &\ kashmir\ bg.webp);"></div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Pune" target="_blank" class="borderTEJAS">See More</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-panel">
+            <div class="top" onclick="scrollTotop()">Back to top</div>
+        </div>
+        
+        <div class="down">
+            <ul class="downcenter">
+                <li class="downmain">
+                    <strong>Follow</strong>
+                    <a href="https://www.instagram.com/tejas_hangarge?igsh=ZzZnYWtuaDk4dDA0" target="_blank">Instagram</a>
+                    <a href="https://wa.me/917775073018" target="_blank">Whatsapp</a>
+                    <a href="https://www.facebook.com/tejashangarge" target="_blank">Faceboook</a>
+                    <a href="https://www.linkedin.com/in/tejas-hangarge-4277b1389?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+                    <a href="https://x.com/tejas_hangarge?t=-fU9hk1ax5KcuGCXH8xqQw&s=09" target="_blank">Twitter</a>
+                    <a href="">Telegram</a>
+                </li>
+                <li class="downmain">
+                    <strong>Contact Us</strong>
+                    <a href="/tejas/files/about/tejas.html">Tejas Hangarge</a>
+                    <a href="/tejas/files/about/meet the team.html">Team Member</a>
+                    <a href="">office</a>
+                    <a href="/tejas/files/about/teja.html">Founder</a>
+                </li>
+                <li class="downmain">
+                    <strong>About Us</strong>
+                    <a href="/tejas/files/about/travelling.html">Travelling</a>
+                    <a href="/tejas/files/about/tejas.html">Tejas Hangarge</a>
+                    <a href="/tejas/files/passenger list.html">Our Story</a>
+                    <a href="/tejas/files/about/meet the team.html">Meet The Team</a>
+                    <a href="Tejas.html">Join Us</a>
+                </li>
+                <li class="downmain">
+                    <strong>Team Members</strong>
+                    <a href="/tejas/files/about/tejas.html">Tejas Hangarge</a>
+                    <a href="/tejas/files/about/sam.html">Samiksha Haradge</a>
+                    <a href="/tejas/files/about/apoorva.html">Apurva Deshmukh</a>
+                </li>
+            </ul>
+        </div>
+        <div class="t">
+            <div class="tejas">
+                © 2025 Hangarge Tejas Nagnath. All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the author.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FULLY FUNCTIONAL CART MODAL -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>🛒 Shopping Cart</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-body" id="cartBody">
+                <!-- Dynamic cart content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARED CART SYSTEM JAVASCRIPT - FULLY COMPATIBLE WITH PACKAGES PAGE -->
+    <script>
+       
+    </script>
+
+    <script src="tejas.js"></script>
+</body>
+</html>

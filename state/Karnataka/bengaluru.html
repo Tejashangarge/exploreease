@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bengaluru – Silicon Valley of India</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#0a0f1e;
+      color:#f0f4ff;
+      line-height:1.6;
+    }
+
+    /* HERO WITH BACKGROUND IMAGE */
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.437), rgba(0, 0, 0, 0.826)),
+        url("/tejas/image/bengaluru.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-content{
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.2);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#00d4ff,#ff4d6d);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#e8f2ff;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#a3d8ff;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#00b8e6,#ff4d6d);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.4);
+      color:#d0e8ff;
+    }
+    .btn-outline:hover{
+      background:rgba(0,0,0,0.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(12,17,38,0.96);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#a3d8ff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#00d4ff,#ff4d6d);
+    }
+    p{
+      font-size:15px;
+      color:#e6ecff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#c8d8ff;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(15,22,50,0.97);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#b8e6ff;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#d4e2ff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#00d4ff;
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#f0e8ff;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(20,28,60,0.95);
+      color:#f0e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#a8b8d8;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Garden City • Karnataka</div>
+      <h1>Bengaluru – <span>Silicon Valley of India</span></h1>
+      <p class="hero-subtitle">
+        Bengaluru, formerly Bangalore, is Karnataka's capital and India's premier technology hub, blending IT innovation, pleasant climate, vibrant nightlife and rich cultural heritage amidst lush green spaces.
+      </p>
+      <p class="hero-tagline">Tech • Gardens • Pubs • Cubbon Park</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Explore Bengaluru</button>
+        <button class="btn btn-outline">View Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CITY OVERVIEW -->
+     <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        Visitors explore Cubbon Park greenery, majestic Bangalore Palace, tech museums like Visvesvaraya Industrial, Lalbagh Botanical Gardens, and vibrant markets like Commercial Street and KR Market.
+      </p>
+      <p class="muted">
+        Iconic spots include Tipu Sultan's Summer Palace, Bull Temple, ISKCON Temple, plus nightlife in Indiranagar, MG Road pubs and nearby hill stations like Nandi Hills.
+      </p>
+
+      <div class="image-grid">
+        <!-- BOX 1 -->
+        <div class="image-box">
+          <img src="/tejas/image/karnataka/cubbon park bengaluru.jpeg" alt="Cubbon Park Bengaluru">
+          <div class="image-overlay">
+            <div class="image-title">Cubbon Park</div>
+            <div class="image-sub">
+              300-acre lung of the city with museums, gardens, walking paths and British-era architecture.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="image-box">
+          <img src="/tejas/image/karnataka/Bangalore Palace.jpg" alt="Bangalore Palace Bengaluru">
+          <div class="image-overlay">
+            <div class="image-title">Bangalore Palace</div>
+            <div class="image-sub">
+              Tudor-style royal palace modeled after Windsor Castle with audio tours and musical fountains.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="image-box">
+          <img src="/tejas/image/karnataka/Lalbagh Botanical Garden begngaluru.jpeg" alt="Lalbagh Botanical Garden Bengaluru">
+          <div class="image-overlay">
+            <div class="image-title">Lalbagh Botanical Garden</div>
+            <div class="image-sub">
+              240-acre garden with glasshouse, lake, 1000+ plant species and famous flower shows.
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="image-box">
+          <img src="/tejas/image/karnataka/Bannerghatta National Park.jpg" alt="Bannerghatta National Park Bengaluru">
+          <div class="image-overlay">
+            <div class="image-title">Bannerghatta National Park</div>
+            <div class="image-sub">
+              Wildlife sanctuary with safaris, zoo, butterfly park and trekking trails just 22km away.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Bengaluru is India's third most populous city and a global technology center, serving as Karnataka's capital with a thriving startup ecosystem and aerospace industry.
+         </p>
+         <p>
+           Founded in the 16th century by Kempe Gowda, the city evolved from a mud fort into British Cantonment, later becoming India's IT capital during the 1990s software boom.
+         </p>
+         <p class="muted">
+           Known as the "Pub Capital of India" for nightlife and "Garden City" for its greenery, plus major contributions to India's space and defense sectors.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Quick facts</h3>
+         <ul>
+           <li>Region: Deccan Plateau, southern Karnataka.</li>
+           <li>Key identity: IT capital, startup hub and aerospace center.</li>
+           <li>Population: Over 13 million in metro area.</li>
+           <li>Languages: Kannada, English, Hindi and others.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Bengaluru enjoys a moderate tropical savanna climate with pleasant temperatures year-round due to its high elevation, though monsoon brings heavy rains.
+         </p>
+         <p>
+           Best visiting months are October to March when weather is cool and comfortable for outdoor exploration and festivals.
+         </p>
+         <p class="muted">
+           Summer (March-May) sees temperatures up to 35°C, while monsoon (June-September) delivers consistent rainfall averaging 1000mm annually.
+         </p>
+        </div>
+        <div class="info-row">
+         <div class="pill">Best season: Oct – Mar.</div>
+         <div class="pill">Summer highs: 33–36°C.</div>
+         <div class="pill">Monsoon: Jun – Sep.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE & LIFESTYLE -->
+    <section id="culture">
+      <h2>Culture, food & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+         <p>
+           Bengaluru thrives as a cosmopolitan melting pot with Kannada culture, international cuisine, rock music scene, pub culture and festivals like Ugadi, Dasara and Christmas celebrations.
+         </p>
+         <p>
+           Famous for cosmopolitan food scene from dosas, filter coffee to global cuisines, plus iconic street eats at VV Puram food street and fine dining in Koramangala.
+         </p>
+         <p class="muted">
+           Silicon Valley vibe with tech parks, startup cafes, live music venues, malls and India's busiest airport serving global connectivity.
+         </p>
+        </div>
+        <div class="card">
+         <h3>Why Bengaluru stands out</h3>
+         <ul>
+           <li>India's undisputed technology and startup capital.</li>
+           <li>Perfect year-round climate attracting professionals worldwide.</li>
+           <li>Unique mix of green spaces, nightlife, history and innovation hubs.</li>
+         </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Allocate 3-4 days for central attractions, parks, palaces plus nightlife; use metro, Uber or BMTC buses; extend for day trips to Mysore, Coorg or Shivanasamudra Falls.
+      </p>
+      <ul>
+        <li>Year-round pleasant weather; evenings cool even in summer; carry light jacket.</li>
+        <li>Pubs and nightlife thrive post-8 PM; many spots require reservations on weekends.</li>
+        <li>Traffic heavy during peak hours; plan early mornings for gardens/parks, evenings for markets.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    Bengaluru – Silicon Valley of India • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>

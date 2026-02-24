@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tour Packages - India Travel</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.hero {
+    position: relative;
+    height: 70vh;
+    margin-top: 70px;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: -2;
+    padding: 25px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+.packages {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 4rem;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.package-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.package-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Predefined image classes - fixed class name issues */
+.goa { background-image: url('/tejas/image/goa.jpg'); }
+.mumbai { background-image: url('/tejas/image/mumbai.jpg'); }
+.hyderabad { background-image: url('/tejas/image/hyderabad.jpg'); }
+.chennai { background-image: url('/tejas/image/chennai.jpg'); }
+.bengaluru { background-image: url('/tejas/image/bengaluru.jpg'); }
+.vizag { background-image: url('/tejas/image/vizagbg.jpg'); }
+.jammu { background-image: url('/Tejas/image/jammu\ &\ kashmir.jpg'); }
+.ooty { background-image: url('/tejas/image/Packages images/Ooty.jpg'); }
+.manali { background-image: url('/tejas/image/Packages images/Manali.jpg'); }
+.coonoor { background-image: url('/tejas/image/Packages images/Coonoor.jpg'); }
+.shimla { background-image: url('/tejas/image/Packages images/Shimla.jpg'); }
+.kedarnath { background-image: url('/tejas/image/Packages images/Kedarnath.jpg'); }
+.vaishno { background-image: url('/tejas/image/Packages images/Vaishno.jpg'); }
+.tirupati { background-image: url('/tejas/image/Packages images/Tirupatitemole.jpg'); }
+.tadoba { background-image: url('/tejas/image/Packages images/Tadoba-Forest.jpg'); }
+
+.package-content {
+    padding: 2rem;
+}
+
+.city-name {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 2rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.detail-item {
+    background: #f8f9fa;
+    padding: 0.8rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.detail-item strong {
+    display: block;
+    color: #667eea;
+}
+
+/* Restored cart functionality with improved styling */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cart-btn, .book-btn {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-btn {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+}
+
+.book-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.cart-btn:hover, .book-btn:hover {
+    transform: scale(1.05);
+}
+
+.floating-icons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.float-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.float-icon:hover {
+    transform: scale(1.1);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links { 
+        display: none; 
+    }
+    .hero h1 { 
+        font-size: 2rem; 
+    }
+    .package-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .button-group { 
+        flex-direction: column; 
+    }
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+<nav>
+<div class="logo">Explore Ease</div>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="/tejas/files/about/tejas.html">About</a></li>
+<li><a href="/tejas/files/about/meet the team.html">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+<video autoplay muted loop playsinline class="hero-video">
+<source src="/tejas/image/indiabg.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+</section>
+
+<!-- PACKAGES SECTION -->
+<section class="packages" id="packages">
+<h2 class="section-title">Featured Tour Packages</h2>
+
+<div class="package-grid">
+<div class="package-card">
+<div class="package-image goa"></div>
+<div class="package-content">
+<h3 class="city-name">Goa Beach Escape</h3>
+<div class="price">₹25,999</div>
+<div class="details">
+<div class="detail-item"><strong>5 Days</strong>4 Nights</div>
+<div class="detail-item"><strong>Calangute Beach Resort</strong>4★ Luxury</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Goa Beach Escape', 25999)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image mumbai"></div>
+<div class="package-content">
+<h3 class="city-name">Mumbai City Tour</h3>
+<div class="price">₹18,500</div>
+<div class="details">
+<div class="detail-item"><strong>4 Days</strong>3 Nights</div>
+<div class="detail-item"><strong>Taj Mahal Palace</strong>5★ Heritage</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Mumbai City Tour', 18500)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image hyderabad"></div>
+<div class="package-content">
+<h3 class="city-name">Hyderabad Heritage</h3>
+<div class="price">₹22,000</div>
+<div class="details">
+<div class="detail-item"><strong>5 Days</strong>4 Nights</div>
+<div class="detail-item"><strong>Taj Falaknuma Palace</strong>5★ Palace</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Hyderabad Heritage', 22000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image chennai"></div>
+<div class="package-content">
+<h3 class="city-name">Chennai Coastal</h3>
+<div class="price">₹19,999</div>
+<div class="details">
+<div class="detail-item"><strong>4 Days</strong>3 Nights</div>
+<div class="detail-item"><strong>The Leela Palace</strong>5★ Beachfront</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Chennai Coastal', 19999)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image bengaluru"></div>
+<div class="package-content">
+<h3 class="city-name">Bengaluru Tech Tour</h3>
+<div class="price">₹22,000</div>
+<div class="details">
+<div class="detail-item"><strong>4 Days</strong>3 Nights</div>
+<div class="detail-item"><strong>The Leela Palace</strong>5★ Luxury</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Bengaluru Tech Tour', 22000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image vizag"></div>
+<div class="package-content">
+<h3 class="city-name">Vizag Beach Retreat</h3>
+<div class="price">₹24,000</div>
+<div class="details">
+<div class="detail-item"><strong>5 Days</strong>4 Nights</div>
+<div class="detail-item"><strong>Novotel Visakhapatnam</strong>4★ Beachfront</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Vizag Beach Retreat', 24000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image jammu"></div>
+<div class="package-content">
+<h3 class="city-name">Jammu & Kashmir</h3>
+<div class="price">₹45,000</div>
+<div class="details">
+<div class="detail-item"><strong>7 Days</strong>6 Nights</div>
+<div class="detail-item"><strong>Taj Mahal Palace</strong>5★ Heritage</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Jammu & Kashmir', 45000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image ooty"></div>
+<div class="package-content">
+<h3 class="city-name">Ooty Hill Station</h3>
+<div class="price">₹23,000</div>
+<div class="details">
+<div class="detail-item"><strong>4 Days</strong>3 Nights</div>
+<div class="detail-item"><strong> Savoy Hotel</strong>5★ Heritage</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Ooty Hill Station', 23000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image manali"></div>
+<div class="package-content">
+<h3 class="city-name">Manali Adventure</h3>
+<div class="price">₹28,000</div>
+<div class="details">
+<div class="detail-item"><strong>5 Days</strong>4 Nights</div>
+<div class="detail-item"><strong>Radisson Blu</strong>5★ Mountain View</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Manali Adventure', 28000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image coonoor"></div>
+<div class="package-content">
+<h3 class="city-name">Coonoor Tea Valley</h3>
+<div class="price">₹22,000</div>
+<div class="details">
+<div class="detail-item"><strong>4 Days</strong>3 Nights</div>
+<div class="detail-item"><strong>Gateway Coonoor</strong>5★ Luxury</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Coonoor Tea Valley', 22000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image shimla"></div>
+<div class="package-content">
+<h3 class="city-name">Shimla Winter Escape</h3>
+<div class="price">₹26,000</div>
+<div class="details">
+<div class="detail-item"><strong>5 Days</strong>4 Nights</div>
+<div class="detail-item"><strong>Oberoi Wildflower Hall</strong>5★ Luxury</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Shimla Winter Escape', 26000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image kedarnath"></div>
+<div class="package-content">
+<h3 class="city-name">Kedarnath Temple Yatra</h3>
+<div class="price">₹35,000</div>
+<div class="details">
+<div class="detail-item"><strong>7 Days</strong>6 Nights</div>
+<div class="detail-item"><strong>GMVN Tourist Bungalow</strong>4★ Pilgrimage</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Kedarnath Temple Yatra', 35000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image vaishno"></div>
+<div class="package-content">
+<h3 class="city-name">Vaishno Devi Temple</h3>
+<div class="price">₹18,000</div>
+<div class="details">
+<div class="detail-item"><strong>4 Days</strong>3 Nights</div>
+<div class="detail-item"><strong>Hotel Atul Palace</strong>4★ Pilgrimage</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Vaishno Devi Temple', 18000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image tirupati"></div>
+<div class="package-content">
+<h3 class="city-name">Tirupati Temple Darshan</h3>
+<div class="price">₹21,000</div>
+<div class="details">
+<div class="detail-item"><strong>3 Days</strong>2 Nights</div>
+<div class="detail-item"><strong>Fortune Select Grand Ridge</strong>5★ Temple View</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Tirupati Temple Darshan', 21000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+
+<div class="package-card">
+<div class="package-image tadoba"></div>
+<div class="package-content">
+<h3 class="city-name">Tadoba Forest Safari</h3>
+<div class="price">₹32,000</div>
+<div class="details">
+<div class="detail-item"><strong>5 Days</strong>4 Nights</div>
+<div class="detail-item"><strong>Irshalgad Resort</strong>5★ Jungle Lodge</div>
+</div>
+<div class="button-group">
+<button class="cart-btn" onclick="addToCart('Tadoba Forest Safari', 32000)">🛒 Add to Cart</button>
+<a href="/files/detailssss.html" class="book-btn">Book Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FLOATING ICONS WITH CART FUNCTIONALITY RESTORED -->
+<div class="floating-icons">
+<div class="float-icon" onclick="scrollToTop()">↑</div>
+<div class="float-icon" onclick="showWhatsApp()">💬</div>
+<div class="float-icon" onclick="toggleCart()" id="cartFloatBtn">
+🛒
+<div class="cart-badge" id="cartBadge" style="display: none;">0</div>
+</div>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('travelCart')) || [];
+
+// SHARED CART SYSTEM
+function addToCart(name, price) {
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name: name, price: price, quantity: 1 });
+    }
+    localStorage.setItem('travelCart', JSON.stringify(cart));
+    updateCartCount();
+    showNotification(`${name} added to cart!`);
+}
+
+function updateCartCount() {
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        badge.textContent = totalItems;
+        badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+}
+
+function toggleCart() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (totalItems === 0) {
+        alert('Cart is empty! Add some packages first.');
+    } else {
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        alert(`🛒 Cart Summary\n\n${cart.map(item => `${item.name} x${item.quantity} - ₹${(item.price * item.quantity).toLocaleString()}`).join('\n')}\n\nTotal: ₹${totalPrice.toLocaleString()}`);
+    }
+}
+
+function showNotification(msg) {
+    // Simple notification with better UX
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed; top: 100px; right: 20px; background: #27ae60; 
+        color: white; padding: 1rem 2rem; border-radius: 10px; 
+        z-index: 10000; transform: translateX(400px); transition: all 0.3s;
+    `;
+    notification.textContent = msg;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+    setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => document.body.removeChild(notification), 300);
+    }, 3000);
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showWhatsApp() {
+    const message = 'Hi! I want to book a tour package from Explore Ease.';
+    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`);
+}
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            const headerHeight = 70;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Scroll animations for package cards
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+});
+
+document.querySelectorAll('.package-card').forEach(card => {
+    observer.observe(card);
+});
+
+// Initialize cart badge
+updateCartCount();
+</script>
+</body>
+</html>

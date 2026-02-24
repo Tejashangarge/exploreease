@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telangana</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</head>
+<style>
+     .hero-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 400px;
+    }
+    .map {
+      background-image: url("/tejas/image/telangana/telangana.jpg");
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      background-size: 100% 100%;
+      height: 400px;
+      width: 50%;
+    }
+    .hero-section {
+      position: relative;
+      height: 400px;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #d3d3d3; /* white-grey */
+            opacity: 0.6;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .dot.active {
+            opacity: 1;
+            transform: scale(1.3);
+            background-color: #ffffff;
+        }
+   
+.hero-msg {
+    background-color: Lavender;
+    color: black;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    width: 50%;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+.hero-msg a {
+    color: #007185;
+}
+
+.hero-section .hero-msg p {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.2rem; /* Optional: adjust font size */
+  color: #444; /* Optional: change text color */
+  font-weight: 400; /* Optional: adjust font weight */
+}
+.hero-section {
+    background-image: url('/image/mumbai.jpg'); /* fallback */
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+header {
+  background: #ff9800;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.cities {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 columns */
+      gap: 40px; /* space between boxes */
+      padding: 20px; /* space around the grid */
+      margin-top: 20px;
+      justify-items: center; /* center boxes horizontally */
+    }
+
+    .box {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+.box img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.box p {
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+}
+footer {
+    margin-top: 15px;
+}
+.foot-panel {
+    background-color: #e5e5e5;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+.down {
+    height: 500px;
+}
+.downcenter {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.downmain {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 17rem;
+    height: 200px;
+    margin-top: 100px;
+}
+.downmain a {
+    text-decoration: none;
+    color: grey;
+    transition: color 0.3s;
+}
+.downmain a:hover {
+    color: red;
+    cursor: pointer;
+}
+.box-img, .box-img1, .box-img6 {
+    width: 80%;           /* relative width responsive to container */
+    max-width: 300px;     /* limits maximum size */
+    aspect-ratio: 1 / 1;  /* keep image perfectly square for circle */
+    border-radius: 50%;   /* make circle */
+    background-size: cover;
+    background-position: center;
+    margin: 1rem auto;    /* center horizontally with margin */
+    display: block;
+}
+.box-img {
+background-image: url('/image/jammu_and_kashmir.jpg');
+}
+.t {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.tejas {
+  color: white;
+  font-size: 12px;
+}
+.box {
+  transition: transform 0.3s ease;
+}
+
+.box:hover {
+  transform: scale(1.10) translateY(-5px);
+  z-index: 1;
+}
+
+.box.dragging {
+  transform: translateY(-20px);
+}
+
+.box:active {
+  cursor: grabbing;
+}
+.Nizamabad, .Kamareddy, .Warangal, .Adilabad, .Vikarabad, .Khammam, .Bhadradri, .Jagtial {
+  text-decoration: none;
+  color: black
+}
+.box a:hover p {
+  background-color: #d4cdc2; /* Light yellow background */
+  color: #000; /* Optional: change text color for contrast */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.box p {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 1.5px;
+}
+.search {
+  position: relative;
+  background-color: black;
+  height: 100px;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;         /* vertical center */
+  justify-content: center;     /* horizontal center */
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;     /* optional: center inner search items */
+  align-items: center;
+  width: 40vw;
+  max-width: 650px;
+  height: 50px;
+  border-radius: 4px;
+  margin: 0 auto;              /* centers the container itself */
+  padding: 0;                  /* reset excessive padding */
+  background: white;           /* optional: makes search bar visible */
+  box-sizing: border-box;
+}
+
+select {
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    border-color: white;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 100px;
+    height: 40px;
+}
+button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: pink;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: none;
+    color: white;
+    padding: 0 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 50px;
+}
+button:hover {
+    background-color: #005fa3;
+}
+.text {
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    height: 45px;
+}
+.search-container:hover {
+    border: 2px solid orange;
+}
+.search-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 80px;       /* Adjust size as needed */
+  width: auto;
+  z-index: 2;         /* Ensure it stays above other elements */
+}
+
+button i {
+  color: white;
+  font-size: 1.2rem;
+}
+.foot-panel {
+    background-color: #e5e5e5;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.top {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+.top:hover {
+    color: #febd68;
+}
+.panel {
+    height: 39px;
+    background-color: #222f3d;
+    display: flex;
+    color: white;
+    align-items: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    position: relative;
+}
+.panel-left {
+    flex-shrink: 0;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #232f3d;
+    border: 1px solid #37474f;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    min-width: 180px;
+    z-index: 1000;
+    margin-top: 5px;
+    padding: 8px 0;
+}
+.panel-center {
+    flex: 1;
+    display: flex;
+    margin-left: 20px;
+}
+.borderTRAIN:hover, .borderFLIGHT:hover, .borderTRAVELLS:hover, .borderBUS:hover, .borderMETRO:hover, .borderHOTELS:hover {
+    color: #febd68;
+}
+.borderTRAIN, .borderFLIGHT, .borderTRAVELLS, .borderBUS, .borderMETRO, .borderHOTELS {
+    color: white;
+    text-decoration: none;
+}
+.panel-right {
+    flex-shrink: 0;
+    margin-left: auto; /* Pushes to right */
+    margin-right: 10px;
+    font-weight: 500px;
+}
+.panel-deals-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.panel-deal {
+  text-decoration: none;
+  color: white;
+}
+.panel-deal:hover {
+  color: rgb(240, 74, 62);
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #232f3d;
+    border: 1px solid #37474f;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    min-width: 180px;
+    z-index: 1000;
+    margin-top: 5px;
+    padding: 8px 0;
+}
+
+.dropdown-menu.active {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-link {
+    display: block;
+    padding: 14px 20px;
+    color: white !important;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #37474f;
+}
+
+.dropdown-link:last-child {
+    border-bottom: none;
+}
+
+.dropdown-link:hover {
+    background: #febd68 !important;
+    color: #0f1111 !important;
+    transform: translateX(5px);
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+<body>
+  <div class="search">
+  <img src="/tejas/image/logo.png" class="search-logo">
+
+
+  <div class="search-container">
+    <select id="districtsSelect">
+      <option value=""> All</option>
+    </select>
+    <input type="text" class="text" placeholder="search">
+   <button onclick="searchstate()">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+
+  </div>
+  </div>
+    <header>
+    <h1>Welcome to Telangana</h1>
+    <div class="panel">
+    <!-- LEFT: All + Dropdown -->
+    <div class="panel-left">
+        <div class="panel-all border" id="allDropdownBtn">
+            <i class="fa-solid fa-bars"></i>
+            All
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="dropdown-link borderTRAIN">TRAIN</a>
+            <a href="https://www.easemytrip.com/" target="_blank" class="dropdown-link borderFLIGHT">FLIGHT</a>
+            <a href="https://www.redbus.in/" target="_blank" class="dropdown-link borderTRAVELLS">TRAVELS</a>
+            <a href="https://msrtc.maharashtra.gov.in/GeneralPages/Home.aspx" target="_blank" class="dropdown-link borderBUS">BUS</a>
+            <a href="https://www.oyorooms.com" target="_blank" class="dropdown-link borderHOTELS">HOTELS</a>
+            <a href="https://www.mumbaimetrotimes.com/mumbai-metro/" target="_blank" class="dropdown-link borderMETRO">METRO</a>
+        </div>
+    </div>
+
+    <ul id="optionsList"></ul>
+
+    <!-- CENTER: Main Navigation -->
+    <div class="panel-center">
+        <div class="panel-ops">
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="borderTRAIN">TRAIN</a>
+            <a href="https://www.easemytrip.com/..." target="_blank" class="borderFLIGHT">FLIGHT</a>
+            <a href="https://www.redbus.in/" target="_blank" class="borderTRAVELLS">TRAVELS</a>
+            <a href="https://msrtc.maharashtra.gov.in/GeneralPages/Home.aspx" target="_blank" class="borderBUS">BUS</a>
+            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="borderTRAIN">RAILWAY</a>
+            <a href="https://www.mumbaimetrotimes.com/mumbai-metro/" target="_blank" class="borderMETRO">METRO</a>
+            <a href="https://www.oyorooms.com" target="_blank" class="borderHOTELS">HOTELS</a>
+        </div>
+    </div>
+
+    <!-- RIGHT: Deals -->
+    <div class="panel-right">
+        <div class="panel-deals-group">
+            <a href="/tejas/files/packages.html" class="panel-deal" target="_blank">Tour Packages</a>
+            <a href="/Tejas/php/passenger_form.php" class="panel-deal" target="_blank">Book Your Tickets</a>
+            <a href="/Tejas/php/view_booking.php" class="panel-deal" target="_blank">Check Your Tickets</a>
+            <a href="/Tejas/php/admin_login.php" class="panel-deal" target="_blank">Admin Login</a>
+        </div>
+    </div>
+</div>
+  </header>
+  <section class="hero">
+  <div class="hero-container">
+    <div class="map"></div>
+    <div class="hero-section" id="hero">
+      <div class="dots-container" id="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+  </header>
+   <section class="hero">
+  <div class="hero-container">
+    <div class="map"></div>
+    <div class="hero-section" id="hero">
+      <div class="dots-container" id="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+    <section class="cities">
+    <h2>Explore Cities</h2>
+    <div class="grid">
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Nizamabad.html" target="_blank"><img src="/tejas/image/Telangana/nizamabad.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Nizamabad.html" target="_blank" class="Nizamabad"><p>Nizamabad</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Kamareddy.html" target="_blank"><img src="/tejas/image/Telangana/Kamareddy.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Kamareddy.html" target="_blank" class="Kamareddy"><p>Kamareddy</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Warangal.html" target="_blank"><img src="/tejas/image/Telangana/warangal.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Warangal.html" target="_blank" class="Warangal"><p>Warangal</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Adilabad.html" target="_blank"><img src="/tejas/image/Telangana/adilabad.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Adilabad.html" target="_blank" class="Adilabad"><p>Adilabad</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Vikarabad.html" target="_blank"><img src="/tejas/image/Telangana/vikarabad.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Vikarabad.html" target="_blank" class="Vikarabad"><p>Vikarabad</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Khammam.html" target="_blank"><img src="/tejas/image/Telangana/khammam.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Khammam.html" target="_blank" class="Khammam"><p>Khammam</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Bhadradri Kothagudem.html" target="_blank"><img src="/tejas/image/Telangana/Bhadradri Kothagudem.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Bhadradri Kothagudem.html" target="_blank" class="Bhadradri"><p>Bhadradri Kothagudem</p></a></div>
+<div class="box"><a href="/tejas/files/state/Telangana/Districts/Jagtial.html" target="_blank"><img src="/tejas/image/Telangana/jagtial.jpg"></a><a href="/tejas/files/state/Telangana/Districts/Jagtial.html" target="_blank" class="Jagtial"><p>Jagtial</p></a></div>
+    </div>
+  </section>
+ <footer>
+         <div class="foot-panel">
+            <div class="top" onclick="scrollTotop()">Back to top</div>
+        </div>
+        </div>
+        <div class="down">
+          <ul class="downcenter">
+            <li class="downmain">
+              <strong>Follow</strong>
+              <a href="https://www.instagram.com/tejas_hangarge?igsh=ZzZnYWtuaDk4dDA0" target="_blank">Instagram</a>
+              <a href="https://wa.me/917775073018" target="_blank">Whatsapp</a>
+              <a href="https://www.facebook.com/tejashangarge" target="_blank">Faceboook</a>
+              <a href="https://www.linkedin.com/in/tejas-hangarge-4277b1389?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+              <a href="https://x.com/tejas_hangarge?t=-fU9hk1ax5KcuGCXH8xqQw&s=09" target="_blank">Twitter</a>
+              <a href="">Telegram</a>
+            </li>
+            <li class="downmain">
+              <strong>Contact Us</strong>
+              <a href="/tejas/files/about/tejas.html">Tejas Hangarge</a>
+               <a href="/tejas/files/about/meet the team.html">Team Member</a>
+                <a href="">office</a>
+                 <a href="/tejas/files/about/teja.html">Founder</a>
+            </li>
+            <li class="downmain">
+              <strong>About Us</strong>
+              <a href="/tejas/files/about/travelling.html">Travelling</a>
+              <a href="/tejas/files/about/tejas.html">Tejas Hangarge</a>
+              <a href="/tejas/files/tejast.html">Our Story</a>
+              <a href="/tejas/files/about/meet the team.html">Meet The Team</a>
+              <a href="Tejas.html">Join Us</a>
+            </li>
+            <li class="downmain">
+              <strong>Team Members</strong>
+              <a href="/tejas/files/about/tejas.html">Tejas Hangarge</a>
+              <a href="/tejas/files/about/sam.html">Samiksha Haradge</a>
+              <a href="/tejas/files/about/apoorva.html">Apurva Deshmukh</a>
+            </li>
+          </ul>
+        </div>
+        <div class="t">
+  <div class="tejas">
+    © 2025 Hangarge Tejas Nagnath. All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the author.
+  </div>
+</div>
+ </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // your script here
+});
+        const images = [
+          "/tejas/image/telangana/telanganabg1.jpg",
+          "/tejas/image/telangana/telanganabg2.jpg",
+          "/tejas/image/telangana/telanganabg3.jpg",
+          "/tejas/image/telangana/telanganabg4.jpg",
+          "/tejas/image/telangana/telanganabg5.jpg",
+
+        ];
+        let index = 0;
+        const hero = document.getElementById("hero");
+        const dots = document.querySelectorAll(".dot");
+
+        function updateDots() {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+            });
+        }
+
+        function changeBackground() {
+            hero.style.backgroundImage = `url('${images[index]}')`;
+            updateDots();
+            index = (index + 1) % images.length;
+        }
+
+        // Initial image and dot
+        changeBackground();
+
+        // Change every 5 seconds
+        setInterval(changeBackground, 5000);
+
+
+        
+       // grid box up down
+
+
+        document.querySelectorAll('.box').forEach(box => {
+    let isDragging = false;
+
+    box.addEventListener('mousedown', () => {
+      isDragging = true;
+      box.classList.add('dragging');
+    });
+
+    box.addEventListener('mouseup', () => {
+      isDragging = false;
+      box.classList.remove('dragging');
+    });
+
+    box.addEventListener('mouseleave', () => {
+      if (isDragging) {
+        isDragging = false;
+        box.classList.remove('dragging');
+      }
+    });
+  });
+  const districts = [
+  "Adilabad", "Bhadradri Kothagudem", "Hanumakonda", "Hyderabad", "Jagtial",
+  "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar",
+  "Khammam", "Kumuram Bheem", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak",
+  "Medchal-Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal",
+  "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Rangareddy", "Sangareddy", "Siddipet",
+  "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"
+];
+
+    const select = document.getElementById("districtsSelect");
+    districts.forEach(districts => {
+      const option = document.createElement("option");
+      option.value = districts;
+      option.textContent = districts;
+      select.appendChild(option);
+    });
+
+    function searchstate() {
+  const selecteddistricts = select.value;
+  if (selecteddistricts) {
+    const folderName = selecteddistricts.replace(/\s+/g, '_');
+    const fileName = selecteddistricts + '.html'; // Use original name for file
+    const filePath = '/tejas/files/state/Telangana/districts/' + selecteddistricts + '.html';
+    window.open(filePath, "_blank");
+  } else {
+    alert("Please select a state first.");
+  }
+}
+
+ document.addEventListener("DOMContentLoaded", function() {
+    // your script here
+});
+ function scrollTotop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+document.addEventListener("DOMContentLoaded", function() {
+    // your script here
+    initDropdownMenu();  // ← ADD THIS LINE
+});
+function initDropdownMenu() {
+        const dropdownBtn = document.getElementById('allDropdownBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        if (!dropdownBtn || !dropdownMenu) return;
+        
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    }
+    </script>
+</body>
+</html>

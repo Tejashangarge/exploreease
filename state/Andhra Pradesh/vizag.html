@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visakhapatnam – Jewel of the East Coast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    body{
+      background:#050816;
+      color:#f5f5f5;
+      line-height:1.6;
+    }
+    header{
+      min-height:80vh;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0, 0, 0, 0.686)),
+        url("/tejas/image/Andhra\ Pradesh/vizag.jpg"); /* change this path */
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+    header::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:radial-gradient(circle at 10% 20%, rgba(0,255,255,0.15) 0, transparent 55%),
+                 radial-gradient(circle at 80% 80%, rgba(0,128,255,0.2) 0, transparent 55%);
+      opacity:0.9;
+      z-index:0;
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:900px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.35);
+      border:1px solid rgba(255,255,255,0.15);
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom:10px;
+      letter-spacing:1px;
+    }
+    h1 span{
+      background:linear-gradient(90deg,#4fd1ff,#90ffb8);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-subtitle{
+      font-size:16px;
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#d2d8ff;
+    }
+    .hero-tagline{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:#9fe6ff;
+    }
+    .hero-buttons{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap  ;
+      margin-top:14px;
+    }
+    .btn{
+      padding:10px 22px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.4px;
+      transition:all 0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(120deg,#36d1dc,#5b86e5);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.3);
+      color:#e1e5ff;
+    }
+    .btn-outline:hover{
+      background:rgba(255,255,255,0.06);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 16px 50px;
+    }
+    section{
+      margin-bottom:40px;
+      background:rgba(9,11,25,0.92);
+      border-radius:16px;
+      padding:22px 20px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.65);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(16px);
+    }
+    section h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#9fe6ff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    section h2::before{
+      content:"";
+      display:block;
+      width:6px;
+      height:18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#4fd1ff,#90ffb8);
+    }
+    p{
+      font-size:15px;
+      color:#e2e5ff;
+      margin-bottom:6px;
+    }
+    .muted{
+      color:#b7bee6;
+      font-size:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:2fr 1.3fr;
+      gap:18px;
+      margin-top:10px;
+    }
+    .card{
+      background:rgba(11,15,40,0.95);
+      border-radius:14px;
+      padding:14px 14px 16px;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+      color:#ffdd88;
+    }
+    ul{
+      margin-top:4px;
+      list-style:none;
+    }
+    ul li{
+      font-size:14px;
+      color:#d7dcff;
+      margin:3px 0;
+    }
+    ul li::before{
+      content:"• ";
+      color:#6be3ff;
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    .image-box{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      min-height:180px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.75);
+    }
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:brightness(0.9) saturate(1.1);
+      transition:transform 0.35s ease, filter 0.35s ease;
+    }
+    .image-box:hover img{
+      transform:scale(1.05);
+      filter:brightness(1) saturate(1.2);
+    }
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(4,7,20,0.9) 5%,transparent 55%);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:10px 12px;
+    }
+    .image-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fefefe;
+    }
+    .image-sub{
+      font-size:12px;
+      color:#c6d0ff;
+    }
+
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(16,24,56,0.9);
+      color:#e5e8ff;
+      text-align:center;
+    }
+
+    footer{
+      text-align:center;
+      padding:14px 10px 24px;
+      font-size:13px;
+      color:#8f98c9;
+    }
+
+    @media(max-width:768px){
+      header{
+        min-height:70vh;
+      }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="badge">Coastal Smart City • Andhra Pradesh</div>
+      <h1>Visakhapatnam – <span>Jewel of the Eastern Coast</span></h1>
+      <p class="hero-subtitle">
+        Visakhapatnam, also called Vizag, is a major port city on the Bay of Bengal, famous for its sweeping beaches,
+        green hills and a unique blend of ancient heritage with modern industry and technology.
+      </p>
+      <p class="hero-tagline">Beaches • Hills • Heritage • Navy</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Plan Your Vizag Journey</button>
+        <button class="btn btn-outline">Discover Attractions</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HISTORY + IDENTITY -->
+     <section id="attractions">
+      <h2>Major attractions & experiences</h2>
+      <p>
+        The city offers a mix of sea-facing promenades, hilltop viewpoints, heritage temples, caves and modern urban parks,
+        making it attractive for both relaxed holidays and short adventure‑style trips.
+      </p>
+      <p class="muted">
+        Popular experiences include coastal drives, sunrise at the beaches, visits to ancient temples and Buddhist sites,
+        ropeway rides, cave exploration and water sports like parasailing and surfing at select beaches.
+      </p>
+
+      <!-- IMAGE BOXES – replace IMAGE_URL_HERE with your own image addresses -->
+      <div class="image-grid">
+        <div class="image-box">
+          <img src="/tejas/image/Andhra Pradesh/Rama Krishna Beach & Coastal Front visakhapatnam.jpeg" alt="RK Beach Visakhapatnam">
+          <div class="image-overlay">
+            <div class="image-title">Rama Krishna Beach & Coastal Front</div>
+            <div class="image-sub">
+              Long promenade, war memorials, museums and sunrise views along the main city beach.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/tejas/image/Andhra Pradesh/Rushikonda Beach visakhapatnam.jpg" alt="Rushikonda Beach Visakhapatnam">
+          <div class="image-overlay">
+            <div class="image-title">Rushikonda Beach</div>
+            <div class="image-sub">
+              Clean golden sand, surfable waves and water sports with green hills as a backdrop.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/tejas/image/Andhra Pradesh/Borra Caves & Araku Hills visakhapatnam.jpeg" alt="Borra Caves near Visakhapatnam">
+          <div class="image-overlay">
+            <div class="image-title">Borra Caves & Araku Hills</div>
+            <div class="image-sub">
+              Ancient limestone caves and misty valley landscapes reachable via a scenic hill route.
+            </div>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/tejas/image/Andhra Pradesh/Simhachalam Temple visakhapatnam.jpg" alt="Simhachalam Temple Visakhapatnam">
+          <div class="image-overlay">
+            <div class="image-title">Simhachalam Temple</div>
+            <div class="image-sub">
+              Hilltop temple with a long history, known for ornate architecture and religious significance.
+            </div>
+          </div>
+        </div>
+      </div>
+    <section id="history">
+      <h2>City overview & history</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Visakhapatnam lies in northeastern Andhra Pradesh, framed by the blue Bay of Bengal on one side and the
+            Eastern Ghats hills on the other, which gives the city a dramatic natural amphitheatre-like setting.
+          </p>
+          <p>
+            Historically the region was part of ancient Kalinga and saw the rule of Mauryas, Satavahanas, Pallavas,
+            Cholas and later the Gajapatis, followed by European powers such as the Dutch, French and the British.
+          </p>
+          <p class="muted">
+            Today Vizag is a key port, industrial and naval hub, yet it continues to retain calm, scenic neighbourhoods and a strong coastal lifestyle.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Quick facts</h3>
+          <ul>
+            <li>Location: Northeast coast of Andhra Pradesh, Bay of Bengal.</li>
+            <li>Nicknames: Vizag, City of Destiny, Jewel of the East Coast.</li>
+            <li>Key features: Natural harbour, hill ranges, long beachfront, major naval base.</li>
+            <li>Languages: Telugu (primary), with Hindi and English commonly used.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIMATE & BEST TIME -->
+    <section id="climate">
+      <h2>Climate & best time to visit</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Visakhapatnam has a tropical savanna climate, with warm to hot temperatures through the year and humidity
+            moderated by constant sea breeze from the Bay of Bengal.
+          </p>
+          <p>
+            The most comfortable time to visit is typically from October to March, when daytime temperatures often stay
+            roughly in the mid‑20s to around 30 degrees Celsius and the weather is pleasant for beach activities and sightseeing.
+          </p>
+          <p class="muted">
+            Monsoon months bring heavier rainfall and rougher sea, while summer months can feel quite hot and sultry along the coast.
+          </p>
+        </div>
+        <div class="info-row">
+          <div class="pill">Climate type: Tropical savanna.</div>
+          <div class="pill">Best season: Oct – Mar.</div>
+          <div class="pill">Average annual rainfall: Around 1100 mm.</div>
+          <div class="pill">Coolest month: Around January.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECONOMY, CULTURE, LIFESTYLE -->
+    <section id="culture">
+      <h2>Economy, culture & lifestyle</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Visakhapatnam's economy combines a busy natural harbour, a large steel plant, major refineries, shipbuilding
+            and a growing information‑technology and services sector.
+          </p>
+          <p>
+            The city hosts the headquarters of the Eastern Naval Command of the Indian Navy, which adds strategic
+            importance and a strong maritime identity to local life.
+          </p>
+          <p class="muted">
+            Culturally, Vizag celebrates coastal Andhra food, Telugu festivals, classical dance and music, alongside
+            modern malls, seafront cafés, parks and urban nightlife.
+          </p>
+        </div>
+        <div class="card">
+          <h3>What makes Vizag special?</h3>
+          <ul>
+            <li>Only Indian city that combines a major naval base, heavy industry and long urban beaches in one compact region.</li>
+            <li>Gateway to Araku Valley and several Buddhist heritage sites like Thotlakonda and Bavikonda.</li>
+            <li>Emerging IT and education hub in Andhra Pradesh with universities and research institutions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL TIPS -->
+    <section id="tips">
+      <h2>Travel tips for visitors</h2>
+      <p>
+        Most travellers explore the beachfront, Kailasagiri hilltop park, Rushikonda, Simhachalam temple and Araku or
+        Borra Caves over two to four days, using cabs, autos or app‑based rides within the city.
+      </p>
+      <ul>
+        <li>Carry light cotton clothes almost year‑round, but keep a light layer for cooler evenings in winter and hill areas.</li>
+        <li>Plan sunrise or early morning visits to beaches and viewpoints to avoid midday heat and crowds.</li>
+        <li>During monsoon, check local advisories before entering the sea and watch for rough waves or restrictions.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Visakhapatnam – City of Destiny • Designed for educational purposes.
+  </footer>
+
+</body>
+</html>
